@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-size: 62.5%;
+  font-size: 62.5%; /* 1 rem = 10px */
   font-weight: 300;
   letter-spacing: 1.6;
   font-family: 'Lato', sans-serif;
@@ -30,9 +30,23 @@ body {
   --Grey-dark-1: #333;
   --Grey-dark-2: #777;
   --Grey-dark-3: #999;
+
+  --backgound-color:linear-gradient(to right, var(--primary-light), var(--primary-dark));
+
 }
 
 /* header section css */
+.header {
+ background-image: linear-gradient(to right,
+  rgba(255, 51, 102, 0.5),
+  rgba(186, 38, 93, 0.5)
+  ),
+  url("../img/hero-cover.png");
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
 .navigation{
   display: flex;
   justify-content: space-between;
@@ -103,5 +117,76 @@ body {
   object-fit: fill;
   border-radius: 1rem;
   margin-right: .3rem;
+}
+.heading__box{
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; */
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%,40%);
+  min-width: 60rem;
 
+}
+.heading__primary{
+  text-transform: uppercase;
+  color: var(--Grey-light-1);
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: .7rem;
+  margin-bottom: 2rem;
+  animation: moveLeftToRight 1s ease-out;
+  backface-visibility: hidden;
+}
+.btn,
+.btn:link,
+.btn:visited{
+    display: inline-block;
+    text-decoration: none;
+    padding:1rem 4.5rem;
+    border-radius: 99999px;
+    font-size: 2rem;
+    font-weight: 400;
+    transition: all .2s;
+
+
+}
+.btn-primary:hover{
+  transform: translateY(5px);
+
+}
+.btn-primary{
+    color: var(--Grey-light-1);
+    background-image: var(--backgound-color);
+     animation: moveBottomTop 1s ease-out;
+}
+
+/* Animation */
+@keyframes moveLeftToRight{
+  0%{
+      opacity: 0;
+      transform: translateX(-10rem);
+  }
+  90%{
+      transform: translateX(2px);
+  }
+  100%{
+      opacity: 1;
+      transform: translate(0);
+  }
+}
+@keyframes moveBottomTop{
+  0%{
+      opacity: 0;
+      transform: translateY(10rem);
+  }
+  90%{
+      transform: translateY(-3px);
+  }
+  100%{
+      opacity: 1;
+      transform: translate(0);
+  }
 }
