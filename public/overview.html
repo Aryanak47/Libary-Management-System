@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libary Management System</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>Library Management System</title>
+  </head>
+
+  <body>
     <header class="header">
-        <img src="" alt="page logo" class="header__logo">
-        <form class="navigation__form">
-            
+      <div class="navigation">
+        <p class="header__logo">Library 📚</p>
+        <form class="form">
+          <input type="text" name="" id="search" class="form__search" />
+          <svg class="icon search__icon">
+            <use xlink:href="./img/sprite.svg#icon-search"></use>
+          </svg>
         </form>
-        <nav class="navigation">
-            <ul class="navigation__list">
-                <li class="navigation__item"><a href="#" class="navigation__link">Sign up</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link">Login</a></li>
-            </ul>
+        <nav class="navigation__nav">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">My Books</a>
+            </li>
+            <li class="navigation__item profile">
+              <img src="./img/book1.png" alt="" class="user__photo">
+              <a href="#" class="navigation__link">Robot</a>
+            </li>
+          </ul>
         </nav>
+      </div>
+      
     </header>
-</body>
+  </body>
 </html>
