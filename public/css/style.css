@@ -42,7 +42,7 @@ body {
   rgba(186, 38, 93, 0.5)
   ),
   url("../img/hero-cover.png");
-  height: 90vh;
+  height: 95vh;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -97,7 +97,7 @@ body {
 .form__search {
   width: 90%;
   outline: none;
-  border: 1px solid var(--Grey-dark-2);
+  border: none;
   padding: 0.5rem 0.3rem;
   border-radius: 0.5rem;
   margin-right: -2rem;
@@ -140,28 +140,31 @@ body {
   animation: moveLeftToRight 1s ease-out;
   backface-visibility: hidden;
 }
+.heading__btn{
+  font-size: 2rem;
+  transition: all .2s;
+  color: var(--Grey-light-1);
+  background-image: var(--backgound-color);
+   animation: moveBottomTop 1s ease-out;
+   padding:1rem 4.5rem;
+}
 .btn,
 .btn:link,
 .btn:visited{
     display: inline-block;
     text-decoration: none;
-    padding:1rem 4.5rem;
     border-radius: 99999px;
-    font-size: 2rem;
     font-weight: 400;
-    transition: all .2s;
-
-
 }
-.btn-primary:hover{
+.btn:active{
+    outline: none;
+}
+.heading__btn:hover{
   transform: translateY(5px);
 
 }
-.btn-primary{
-    color: var(--Grey-light-1);
-    background-image: var(--backgound-color);
-     animation: moveBottomTop 1s ease-out;
-}
+
+
 
 /* Animation */
 @keyframes moveLeftToRight{
