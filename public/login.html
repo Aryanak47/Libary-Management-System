@@ -12,6 +12,7 @@
     />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
+
   <body>
     <header class="header">
       <div class="navigation">
@@ -33,7 +34,33 @@
           </ul>
         </nav>
       </div>
-      <div class="sign-up"></div>
+
+      <!-- Sign-up form -->
+      <div class="login">
+        <form>
+          <div class="email-container">
+            <p>Email</p>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              name="email"
+              required
+            />
+          </div>
+
+          <div class="psw-container">
+            <p>Password</p>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              name="psw"
+              required
+            />
+          </div>
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </header>
 
     <!-- Copyright -->
