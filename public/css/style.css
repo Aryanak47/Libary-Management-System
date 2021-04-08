@@ -31,7 +31,7 @@ body {
   --Grey-dark-2: #777;
   --Grey-dark-3: #999;
 
-  --backgound-color: linear-gradient(
+  --background-color: linear-gradient(
     to right,
     var(--primary-light),
     var(--primary-dark)
@@ -145,7 +145,7 @@ body {
   font-size: 2rem;
   transition: all 0.2s;
   color: var(--Grey-light-1);
-  background-image: var(--backgound-color);
+  background-image: var(--background-color);
   animation: moveBottomTop 1s ease-out;
   padding: 1rem 4.5rem;
 }
@@ -162,7 +162,7 @@ body {
 }
 .btn-primary {
   color: var(--Grey-light-1);
-  background-image: var(--backgound-color);
+  background-image: var(--background-color);
   animation: moveBottomTop 1s ease-out;
 }
 /* Card Section */
@@ -197,16 +197,71 @@ body {
   margin: 2rem 0;
   font-size: 2.5rem;
   text-transform: uppercase;
-  background-image: var(--backgound-color);
+  background-image: var(--background-color);
   -webkit-background-clip: text;
   color: transparent;
+}
+
+/* Sign-up style */
+.login {
+  width: 320px;
+  height: 420px;
+  /* background: #000; */
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 70px 30px;
+}
+
+.login p {
+  margin: 7px;
+  padding: 0;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.login input {
+  width: 100%;
+}
+
+.login input[type='email'],
+input[type='password'] {
+  margin: 1rem;
+  border: 1px solid;
+  outline: none;
+  border: none;
+  padding: 0.5rem 0.3rem;
+  border-radius: 0.5rem;
+  height: 25px;
+  color: #000;
+  font-size: 15px;
+}
+
+.login button {
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--Grey-light-1);
+  background-image: var(--background-color);
+  transition: all 0.5s;
+  margin-top: 4rem;
+  padding: 0.8rem 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 /* Animation */
 @keyframes moveLeftToRight {
   0% {
     opacity: 0;
-    transform: translateX(-10rem);
+    transform: translateX(-3px);
   }
   90% {
     transform: translateX(2px);
