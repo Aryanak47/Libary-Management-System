@@ -270,6 +270,25 @@ input[type='password'] {
     transform: translate(-50%, -50%);
 }
 
+/* Sign in button */
+.signup-div{
+    position: absolute;
+    width: 350px;
+    height: 400px;
+    box-shadow: 1px 1px 2px 1px rgba(19, 3, 3, 0);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 50px;
+    opacity: 1;
+    border-radius: 5px;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+
+}
+
+.signup button{
+    margin-top: 40%;
+}
+
 
 /* Animation */
 

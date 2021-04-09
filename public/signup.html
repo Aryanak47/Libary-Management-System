@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Signup</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="navigation">
+        <p class="header__logo">Library 📚</p>
+        <form class="form">
+          <input type="text" name="" id="search" class="form__search" />
+          <svg class="icon search__icon">
+            <use xlink:href="./img/sprite.svg#icon-search"></use>
+          </svg>
+        </form>
+        <nav class="navigation__nav">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a href="./login.html" class="navigation__link"> Login </a>
+            </li>
+            <li class="navigation__item profile">
+              <a href="#" class="navigation__link">Sign up</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Sign-up form -->
+      <form class="login signup">
+        <div class="signup-div">
+          <div class="name-container">
+            <p>Name</p>
+            <input type="email" placeholder="Enter Name" required />
+          </div>
+
+          <div class="email-container">
+            <p>Email</p>
+            <input type="email" placeholder="Enter Email" required />
+          </div>
+
+          <div class="psw-container">
+            <p>Password</p>
+            <input type="password" placeholder="Enter Password" required />
+          </div>
+          <button>Sign up</button>
+        </div>
+      </form>
+    </header>
+
+    <!-- Copyright -->
+    <div class="footer">
+      <p>Copyright © 2021 All rights reserved.</p>
+    </div>
+  </body>
+</html>
