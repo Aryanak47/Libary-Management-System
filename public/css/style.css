@@ -33,6 +33,10 @@ body {
     --background-color: linear-gradient( to right, var(--primary-light), var(--primary-dark));
 }
 
+a{
+    text-decoration: none;
+}
+
 
 /* header section css */
 
