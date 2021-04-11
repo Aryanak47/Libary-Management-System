@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const bookRouter = require('./routers/bookRouter');
+const userRouter = require('./routers/userRouter');
 
 // Middle wears
 app.use(express.static(`${__dirname}/public`));
@@ -27,6 +28,7 @@ mongoose
 
 // routers
 app.use('/api/books', bookRouter);
+app.use('/api/users', userRouter);
 
 // 4) handling other invalid routes
 app.all('*', (req, res, next) => {

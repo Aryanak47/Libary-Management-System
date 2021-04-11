@@ -2,6 +2,7 @@ const AppError = require('../utils/AppError');
 
 // handles validation error
 const handleValidationError = (er) => {
+  console.log('valida');
   const errors = Object.values(er.errors).map((el) => el.message);
   return new AppError(`${errors.join(', ')}`, 400);
 };
@@ -13,7 +14,6 @@ const handleCastError = (error) => {
 };
 
 const manageDevError = (req, res, err) => {
-  console.log(err);
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
@@ -27,7 +27,7 @@ const manageProError = (req, res, err) => {
     return res.status(err.statusCode).json({
       status: err.status,
       message: err.message,
-      error: err.errors,
+      error: err,
       stack: err.stack,
     });
   return res.status(500).json({
