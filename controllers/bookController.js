@@ -5,7 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 exports.createBook = catchAsync(async (req, res) => {
   const doc = await Book.create(req.body);
   res.status(200).json({
-    message: 'sucess',
+    message: 'success',
     data: {
       data: doc,
     },
@@ -19,7 +19,7 @@ exports.getBook = catchAsync(async (req, res, next) => {
     return next(new AppError('Tour does not exits with this id', 404));
   }
   res.status(200).json({
-    status: 'sucess',
+    status: 'success',
     data: {
       book,
     },
@@ -42,7 +42,7 @@ exports.updateBook = catchAsync(async (req, res) => {
     runValidators: true,
   });
   res.status(200).json({
-    status: 'OK',
+    status: 'success',
     data: {
       data: doc,
     },
@@ -51,7 +51,7 @@ exports.updateBook = catchAsync(async (req, res) => {
 exports.deleteBook = catchAsync(async (req, res) => {
   await Book.findByIdAndDelete(req.params.id);
   res.status(200).json({
-    status: 'OK',
+    status: 'success',
     message: 'sucessfully deleted',
   });
 });

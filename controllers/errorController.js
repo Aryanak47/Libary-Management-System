@@ -2,7 +2,6 @@ const AppError = require('../utils/AppError');
 
 // handles validation error
 const handleValidationError = (er) => {
-  console.log('valida');
   const errors = Object.values(er.errors).map((el) => el.message);
   return new AppError(`${errors.join(', ')}`, 400);
 };
@@ -12,6 +11,13 @@ const handleCastError = (error) => {
   const message = `Invalid ${error.path} ${error.value}`;
   return new AppError(message, 400);
 };
+// handles invalid webtoken error
+const handleJWtError = () =>
+  new AppError('Invalid token,Please try again', 400);
+
+// handles  webtoken expire error
+const handleTokenExpiredError = () =>
+  new AppError('Token expired,Please login again', 400);
 
 const manageDevError = (req, res, err) => {
   res.status(err.statusCode).json({
@@ -46,6 +52,8 @@ const errorController = (err, req, res, next) => {
     let error = { ...err };
     if (err.name === 'ValidationError') error = handleValidationError(err);
     if (err.name === 'CastError') error = handleCastError(err);
+    if (err.name === 'JsonWebTokenError') error = handleJWtError();
+    if (err.name === 'TokenExpiredError') error = handleTokenExpiredError();
     manageProError(req, res, error);
   }
 };

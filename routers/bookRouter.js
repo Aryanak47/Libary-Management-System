@@ -1,14 +1,31 @@
 const express = require('express');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 const bookController = require('../controllers/bookController');
 
-router.route('/').post(bookController.createBook);
-router.route('/').get(bookController.getBooks);
+router
+  .route('/')
+  .get(bookController.getBooks)
+  .post(
+    authController.protect,
+    authController.restrictTo('admin'),
+    bookController.createBook
+  );
 router
   .route('/:id')
   .get(bookController.getBook)
-  .delete(bookController.deleteBook);
-router.route('/:id').patch(bookController.updateBook);
+  .delete(
+    authController.protect,
+    authController.restrictTo('admin'),
+    bookController.deleteBook
+  );
+router
+  .route('/:id')
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin'),
+    bookController.updateBook
+  );
 
 module.exports = router;
