@@ -3,12 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css" />
 
     <title>Books</title>
@@ -16,7 +26,7 @@
   <body>
     <!-- <header class="header"> -->
       <div class="navigation">
-       <a href="/public/overview.html"> <p class="header__logo">Library 📚</p></a>
+       <a href="./overview.html"> <p class="header__logo">Library 📚</p></a>
         <form class="form">
           <input type="text" name="" id="search" class="form__search" />
           <svg class="icon search__icon">
@@ -27,10 +37,10 @@
         <nav class="navigation__nav">
           <ul class="navigation__list">
             <li class="navigation__item">
-              <a href="./books.html" class="navigation__link">My Books</a>
+              <a href="./mybook.html" class="navigation__link">My Books</a>
             </li>
             <li class="navigation__item profile">
-              <img src="./img/book/book1.png" alt="" class="user__photo" />
+              <img src="./img/user/default.jpg" alt="" class="user__photo" />
               <a href="./login.html" class="navigation__link">Robot</a>
             </li>
           </ul>
@@ -39,35 +49,35 @@
     <!-- </header> -->
 
     <!-- Books -->
-    <section class="card__section">
-      <h2 class="heading__secondary">Books</h2>
-      <div class="cards">
-        <div class="card">
-          <img src="./img/book/book1.png" alt="" class="card_img" />
-          <a href="#" class="btn card__btn">Reserve</a>
+    <div class="book-container">
+      <div class="row">
+        <div class="col-md-5">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="./img/book/book1.png" class="overview__img" alt="First slide">
+                
+              </div>
+            
+            </div>
+            </a>
+          </div>
         </div>
-        <div class="card">
-          <img src="./img/book/book2.png" alt="" class="card_img" />
-          <a href="#" class="btn card__btn">Reserve</a>
-        </div>
-        <div class="card">
-          <img src="./img/book/book3.png" alt="" class="card_img" />
-          <a href="#" class="btn card__btn">Reserve</a>
-        </div>
-        <div class="card">
-          <img src="./img/book/book4.png" alt="" class="card_img" />
-          <a href="#" class="btn card__btn">Reserve</a>
-        </div>
-        <div class="card">
-          <img src="./img/book/book5.png" alt="" class="card_img" />
-          <a href="#" class="btn card__btn">Reserve</a>
-        </div>
-        <div class="card">
-          <img src="./img/book/book6.png" alt="" class="card_img" />
-          <a href="#" class="btn card__btn">Reserve</a>
+        <div class="col-md-5">
+          <p class="newarrival text-center">NEW</p>
+          <h2>Milk and Honey</h2>
+          <p class="genre">Productivity</p>
+          <p class="about">About: Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quam similique est omnis labore, earum fuga odio deserunt, aspernatur illo consequuntur aperiam ullam debitis temporibus voluptate iusto consectetur aut accusantium!
+             </p>
+
+          <p class="attributes"><b>ISBN: </b> 9876543210</p>
+          <p class="attributes"><b>Author: </b> Rupi Kaur</p>
+          <p class="attributes"><b>Availability: </b> In Stock</p>
+          
+          <button class="reserve">Reserve</button>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- Copyright -->
     <div class="footer">
