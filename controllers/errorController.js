@@ -57,5 +57,4 @@ const errorController = (err, req, res, next) => {
     manageProError(req, res, error);
   }
 };
-
 module.exports = errorController;

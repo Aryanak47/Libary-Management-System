@@ -11,8 +11,7 @@ html {
 }
 
 body {
-    font-size: 62.5%;
-    /* 1 rem = 10px */
+    font-size: 62.5%;/* 1 rem = 10px */
     font-weight: 300;
     letter-spacing: 1.6;
     font-family: 'Lato', sans-serif;
@@ -41,7 +40,8 @@ a{
 /* header section css */
 
 .header {
-    background-image: linear-gradient( to right, rgba(255, 51, 102, 0.5), rgba(186, 38, 93, 0.5)), url('../img/hero-cover.png');
+    background-image: linear-gradient( to right, rgba(255, 51, 102, 0.5), rgba(186, 38, 93, 0.5)),
+     url('../img/hero-cover.png');
     height: 95vh;
     background-size: cover;
     background-position: center;
@@ -176,15 +176,29 @@ a{
 
 
 /* Card Section */
+.card_img{
+    width:100%
+}
+.new__tag{
+    background-color: var(--primary);
+    padding: 2px 4px;
+    color: #fff;
+    font-weight: 400;
+    border-radius: 1px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: -1rem;
+}
 
 .card__section {
     padding: 1rem 2rem;
 }
 
 .card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .card__btn,
@@ -202,8 +216,8 @@ a{
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    grid-gap: 2.5rem;
 }
 
 .heading__secondary {
@@ -288,18 +302,14 @@ input[type='password'] {
     -webkit-backdrop-filter: blur(0px);
 
 }
-
 .signup button{
     margin-top: 40%;
 }
-
-
 /* Animation */
-
 @keyframes moveLeftToRight {
     0% {
         opacity: 0;
-        transform: translateX(-3px);
+        transform: translateX(-3rem);
     }
     90% {
         transform: translateX(2px);
@@ -309,7 +319,6 @@ input[type='password'] {
         transform: translate(0);
     }
 }
-
 @keyframes moveBottomTop {
     0% {
         opacity: 0;
@@ -325,18 +334,19 @@ input[type='password'] {
 }
 
 /* my books page */
+
 .card1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    
     
 }
 
 .cards .card1 {
-    width: 240px;
-    margin: 20px;
     background:  #f0eeee;
-    padding: 20px 10px;
+    padding: 1rem; 
 }
 
 .cards .card1 h3{
