@@ -293,37 +293,6 @@ input[type='password'] {
     margin-top: 40%;
 }
 
-
-/* Animation */
-
-@keyframes moveLeftToRight {
-    0% {
-        opacity: 0;
-        transform: translateX(-3px);
-    }
-    90% {
-        transform: translateX(2px);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(0);
-    }
-}
-
-@keyframes moveBottomTop {
-    0% {
-        opacity: 0;
-        transform: translateY(10rem);
-    }
-    90% {
-        transform: translateY(-3px);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(0);
-    }
-}
-
 /* my books page */
 .card1 {
     display: flex;
@@ -354,15 +323,110 @@ input[type='password'] {
     color: #000;
 }
 
+/* books page */
+.book-container{
+    padding-top: 6rem;
+    margin: 0 2rem;
+    padding-bottom: 4.2rem;
+}
+.carousel-inner{
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-item img{
+    width: 50%;
+    overflow: hidden;
+}
+
+.newarrival{
+    background: var(--primary-light);
+    border-radius: 3px;
+    width: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.row{
+    margin-right: 0;
+}
+.com-md-7 h2{
+    color: var(--Grey-dark-1);
+}
+
+.genre {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.about{
+    font-size: 1rem;
+}
+
+.attributes{
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+}
+
+.reserve{
+    border: none;
+    background: var(--primary-light);
+    color: var(--Grey-light-1);
+    font-size: 1.3rem;
+    padding: .5rem;
+    border-radius: 5px;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.5);
+ 
+}
+
+.reserve:active:hover{
+    transform: translateY(2px);
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+    outline: none;
+}
+
+
 /* Footer */
 
 .footer {
     height: 30px;
-    padding-top: 6px;
     width: 100%;
     background-color: #999999;
     color: white;
     font-size: 1.1rem;
     font-weight: 500;
     text-align: center;
+}
+
+/* Animation */
+
+@keyframes moveLeftToRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-3px);
+    }
+    90% {
+        transform: translateX(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveBottomTop {
+    0% {
+        opacity: 0;
+        transform: translateY(10rem);
+    }
+    90% {
+        transform: translateY(-3px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
