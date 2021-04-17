@@ -54,7 +54,7 @@
               required
             />
           </div>
-          <button>Login</button>
+          <button id="myBtn" onclick="javascript:alert('Login Successful')">Login</button>
       </form>
     </header>
 
@@ -62,5 +62,15 @@
     <div class="footer">
       <p>Copyright © 2021 All rights reserved.</p>
     </div>
+
+    <!-- JS -->
+    <script>
+      input.addEventListener(function(event) {
+        if (event.keyCode === 13) {
+         event.preventDefault();
+         document.getElementById("myBtn").click();
+        }
+      });
+      </script>
   </body>
 </html>
