@@ -83,3 +83,28 @@ exports.restrictTo = (...role) => (req, res, next) => {
     next(new AppError('You do not have permission to perform this action !'));
   next();
 };
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  if (req.cookies.jwt) {
+    try {
+      // validate token
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
+      // check user if stills login
+      const freshUser = await User.findById(decoded.id);
+      if (!freshUser) {
+        return next();
+      }
+      // check if user changed password after issued token
+      if (freshUser.checkPasswordChanged(decoded.iat)) {
+        return next();
+      }
+      res.locals.user = freshUser;
+      return next();
+    } catch (error) {
+      return next();
+    }
+  }
+  next();
+});

@@ -4,15 +4,20 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const bookRouter = require('./routers/bookRouter');
 const userRouter = require('./routers/userRouter');
+const viewRouter = require('./routers/viewRouter');
 
+app.set('view engine', 'pug');
+app.set('views', `${__dirname}/views`);
 // Middle wears
 app.use(express.static(`${__dirname}/public`));
 app.use(cors());
-app.use(express.json()); // error solved with this middlewear
+app.use(express.json());
+app.use(cookieParser());
 
 // Connecting database
 
@@ -27,6 +32,7 @@ mongoose
   });
 
 // routers
+app.use('/', viewRouter);
 app.use('/api/books', bookRouter);
 app.use('/api/users', userRouter);
 
