@@ -1,0 +1,21 @@
+header.header
+  .navigation
+    a(href='/')
+      p.header__logo Library &#x1F4DA;
+    form.form
+      input#search.form__search(type='text' name='')
+      svg.icon.search__icon
+        use(xlink:href='/img/sprite.svg#icon-search')
+    nav.navigation__nav
+      ul.navigation__list
+        if user
+          li.navigation__item
+            a.navigation__link(href='/mybook.html') My Books
+          li.navigation__item.profile
+            img.user__photo(src=`/img/user/${user.photo}` alt='user photo')
+            a.navigation__link(href='/login')=user.name
+        else 
+          li.navigation__item
+            a.navigation__link(href='/login')  Login 
+          li.navigation__item.profile
+            a.navigation__link(href='/signup') Sign up

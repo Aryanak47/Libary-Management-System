@@ -52,7 +52,7 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.comparePassword = async function (candidatePw, userPw) {
   return await bcrypt.compare(candidatePw, userPw);
 };
-userSchema.methods.checkChangePassword = function (issueDate) {
+userSchema.methods.checkPasswordChanged = function (issueDate) {
   if (this.changePasswordAt) {
     const currentTime = parseInt(this.changePasswordAt / 1000, 10);
     return issueDate < currentTime;

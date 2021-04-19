@@ -12,7 +12,9 @@ const signToken = (id) => {
 };
 const createCookies = (res, status, user) => {
   const cookieOptions = {
-    expires: new Date(process.env.COOKIE_EXP * 24 * 60 * 60 * 1000),
+    expires: new Date(
+      Date.now() + process.env.COOKIE_EXP * 24 * 60 * 60 * 1000
+    ),
     httpOnly: true,
   };
   if (process.env.NODE_ENV === 'pro') cookieOptions.secure = true;
@@ -58,6 +60,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookie.jwt) {
+    token = req.cookie.jwt;
   }
   if (!token) next(new AppError('Please login again', 400));
   // verify token
@@ -73,7 +77,7 @@ exports.protect = catchAsync(async (req, res, next) => {
         400
       )
     );
-  res.user = user;
+  req.user = user;
   next();
 });
 
@@ -83,13 +87,13 @@ exports.restrictTo = (...role) => (req, res, next) => {
     next(new AppError('You do not have permission to perform this action !'));
   next();
 };
-exports.isLoggedIn = catchAsync(async (req, res, next) => {
+exports.isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
     try {
       // validate token
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
-        process.env.JWT_SECRET
+        process.env.SECRET_TOKEN
       );
       // check user if stills login
       const freshUser = await User.findById(decoded.id);
@@ -100,6 +104,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
       if (freshUser.checkPasswordChanged(decoded.iat)) {
         return next();
       }
+      req.user = freshUser;
       res.locals.user = freshUser;
       return next();
     } catch (error) {
@@ -107,4 +112,4 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
     }
   }
   next();
-});
+};
