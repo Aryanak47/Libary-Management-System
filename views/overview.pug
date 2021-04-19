@@ -7,23 +7,20 @@ block content
   section.card__section
     h2.heading__secondary Books
     .cards
-      .card
-        .new__tag New
-        img.card_img(src='/img/book/book1.png' alt='')
-        a.btn.card__btn(href='/books.html') Reserve
-      .card
-        img.card_img(src='/img/book/book2.png' alt='')
-        a.btn.card__btn(href='#') Reserve
-      .card
-        img.card_img(src='/img/book/book3.png' alt='')
-        a.btn.card__btn(href='#') Reserve
-      .card
-        img.card_img(src='/img/book/book4.png' alt='')
-        a.btn.card__btn(href='#') Reserve
-      .card
-        img.card_img(src='/img/book/book5.png' alt='')
-        a.btn.card__btn(href='#') Reserve
-      .card
-        img.card_img(src='/img/book/book6.png' alt='')
-        a.btn.card__btn(href='#') Reserve
+      -const notEmpty = books.length ? true : false;
+      if !notEmpty
+        .loader
+      each book in books
+        .card
+          .img__container
+            img.card_img(src=`/img/book/${book.photo}` alt='')
+            if book.new
+              .new__tag New
+          a.btn.card__btn(href='/books.html') Reserve
+    .page
+      -const current = currentPage * 1;
+      if current > 1
+        a(href=`/?page=${current -1}` class='previous page__btn') &lsaquo;
+      else if current < pagesCount
+        a(href=`/?page=${current+1}` class='next page__btn') &rsaquo;
 

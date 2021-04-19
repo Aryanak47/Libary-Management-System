@@ -1,5 +1,19 @@
+const Book = require('../model/bookModel');
+const catchAsync = require('../utils/catchAsync');
+
 exports.getOverView = (req, res) => {
-  res.status(200).render('overview');
+  const page = req.query.page || 1;
+  const options = {
+    page: page,
+    limit: 4,
+  };
+  Book.paginate({}, options).then((result) => {
+    res.status(200).render('overview', {
+      books: result.docs,
+      pagesCount: result.totalPages,
+      currentPage: page,
+    });
+  });
 };
 exports.getSignUp = (req, res) => {
   res.status(200).render('signup');

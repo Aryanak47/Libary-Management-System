@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const bookSchema = new mongoose.Schema(
   {
@@ -38,5 +39,8 @@ bookSchema.pre('save', function (next) {
   next();
 });
 
+bookSchema.plugin(mongoosePaginate);
+
 const Books = mongoose.model('Books', bookSchema);
+
 module.exports = Books;
