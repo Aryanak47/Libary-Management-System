@@ -7,10 +7,9 @@ block content
   section.card__section
     h2.heading__secondary Books
     .cards
-      -const notEmpty = books.length ? true : false;
-      if !notEmpty
-        .loader
       each book in books
+        if !book.name
+          .loader
         .card
           .img__container
             img.card_img(src=`/img/book/${book.photo}` alt='')
@@ -20,7 +19,13 @@ block content
     .page
       -const current = currentPage * 1;
       if current > 1
-        a(href=`/?page=${current -1}` class='previous page__btn') &lsaquo;
+        if term 
+           a(href=`/?term=${term}&page=${current -1}` class='previous page__btn') &lsaquo;
+        else
+         a(href=`/?page=${current -1}` class='previous page__btn') &lsaquo;
       else if current < pagesCount
-        a(href=`/?page=${current+1}` class='next page__btn') &rsaquo;
+        if term 
+          a(href=`/?term=${term}&page=${current+1}` class='next page__btn') &rsaquo;
+        else
+          a(href=`/?page=${current+1}` class='next page__btn') &rsaquo;
 

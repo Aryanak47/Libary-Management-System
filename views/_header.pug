@@ -3,7 +3,7 @@ header.header
     a(href='/')
       p.header__logo Library &#x1F4DA;
     form.form
-      input#search.form__search(type='text' name='')
+      input#search.form__search(type='text' name='' placeholder='search by name,genre...')
       svg.icon.search__icon
         use(xlink:href='/img/sprite.svg#icon-search')
     nav.navigation__nav
@@ -13,7 +13,7 @@ header.header
             a.navigation__link(href='/mybook.html') My Books
           li.navigation__item.profile
             img.user__photo(src=`/img/user/${user.photo}` alt='user photo')
-            a.navigation__link(href='/login')=user.name
+            a.navigation__link(href='/')=user.name
         else 
           li.navigation__item
             a.navigation__link(href='/login')  Login 

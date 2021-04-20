@@ -64,6 +64,11 @@ a{
 
 .search__icon {
     fill: var(--Grey-dark-2);
+    
+}
+.search__icon:hover {
+    cursor: pointer;
+    
 }
 
 .navigation__list {
@@ -108,6 +113,10 @@ a{
 
 .form__search:focus {
     width: 100%;
+}
+.form__search::placeholder{
+    color: #ddd;
+    font-size: .8rem;
 }
 
 .profile {

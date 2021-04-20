@@ -1,7 +1,8 @@
 /* eslint-disable */
 
-const loginForm = document.querySelector('.login');
 
+const loginForm = document.querySelector('.login');
+const search = document.querySelector('#search');
 if(loginForm){
     loginForm.addEventListener('submit',async e => {
         e.preventDefault();
@@ -34,6 +35,12 @@ if(loginForm){
         }
         
     })
+}
+if(search){
+  document.querySelector('.search__icon').addEventListener('click', e =>{
+    e.preventDefault()
+    window.location.assign(`/search/?term=${search.value}`)
+  })
 }
 
 

@@ -12,6 +12,13 @@ router
     viewController.getOverView
   );
 router
+  .route('/search')
+  .get(
+    authController.isLoggedIn,
+    viewController.checkLogedIn,
+    viewController.getSearch
+  );
+router
   .route('/signup')
   .get(authController.isLoggedIn, viewController.getSignUp);
 router.route('/login').get(authController.isLoggedIn, viewController.getLogin);
