@@ -32,9 +32,16 @@ exports.getSearch = (req, res) => {
   });
 };
 exports.getSignUp = (req, res) => {
+  // if user is already loged in ,take user to home page
+  if (req.user) {
+    return res.redirect('/');
+  }
   res.status(200).render('signup');
 };
 exports.getLogin = (req, res) => {
+  if (req.user) {
+    return res.redirect('/');
+  }
   res.status(200).render('login');
 };
 exports.checkLogedIn = (req, res, next) => {
