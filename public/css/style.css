@@ -297,12 +297,13 @@ a{
 }
 
 .login input[type='email'],
+#signup__name,
 input[type='password'] {
-    margin: 1rem;
+    margin-top: 1rem;
     border: 1px solid;
     outline: none;
     border: none;
-    padding: 0.5rem 0.3rem;
+    padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     height: 25px;
     color: #000;
