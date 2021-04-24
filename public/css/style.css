@@ -273,7 +273,7 @@ a{
 
 /* Sign-up style */
 
-.login {
+.form__submit {
     width: 320px;
     height: 420px;
     /* background: #000; */
@@ -285,18 +285,18 @@ a{
     padding: 70px 30px;
 }
 
-.login p {
+.form__submit p {
     margin: 7px;
     padding: 0;
     font-weight: bold;
     font-size: 1rem;
 }
 
-.login input {
+.form__submit input {
     width: 100%;
 }
 
-.login input[type='email'],
+.form__submit input[type='email'],
 #signup__name,
 input[type='password'] {
     margin-top: 1rem;
@@ -310,7 +310,7 @@ input[type='password'] {
     font-size: 15px;
 }
 
-.login button {
+.form__submit button {
     cursor: pointer;
     outline: none;
     border:none;

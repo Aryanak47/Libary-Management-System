@@ -1,6 +1,6 @@
 extends base
 block content 
-    form.login.signup
+    form.form__submit.signup
         .signup-div
             .name-container
             p Name
@@ -10,6 +10,6 @@ block content
             input#signup__email(type='email' placeholder='Enter Email' required='')
             .psw-container
             p Password
-            input#signup__password(type='password' placeholder='Enter Password' required='')
-            button#signup_btn Sign up
+            input#signup__password(type='password' minlength='8' placeholder='Enter Password' required='')
+            button#signup__btn Sign up
 
