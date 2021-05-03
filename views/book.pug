@@ -1,0 +1,48 @@
+extends base
+block content
+    append head
+        link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+        link(rel='stylesheet' href='/css/style.css')
+    header
+        .navigation
+            a(href='/')
+                p.header__logo Library &#x1F4DA;
+            form.form
+                input#search.form__search(type='text' name='' placeholder='search by name,genre...')
+                svg.icon.search__icon
+                    use(xlink:href='/img/sprite.svg#icon-search')
+            nav.navigation__nav
+                ul.navigation__list
+                    if user
+                        li.navigation__item
+                            a.navigation__link(href='/mybook.html') My Books
+                        li.navigation__item.profile
+                            img.user__photo(src=`/img/user/${user.photo}` alt='user photo')
+                            a.navigation__link(href='/')=user.name
+                    else 
+                        li.navigation__item
+                            a.navigation__link(href='/login')  Login 
+                        li.navigation__item.profile
+                            a.navigation__link(href='/signup') Sign up
+    .book-container
+        .row
+            .col-md-5
+                #carouselExampleControls.carousel.slide(data-ride='carousel')
+                    .carousel-inner
+                    .carousel-item.active
+                        img.overview__img(src=`/img/book/${book.photo}` alt='book image')
+            .col-md-5
+                if book.new
+                    p.newarrival.text-center NEW
+                h2=book.name
+                p.genre=book.genre
+                p.about=book.summary
+                p.attributes
+                    b=` ISBN: ${book.ISBN}`
+                p.attributes
+                    b=`Author: ${book.authors.join(', ')}`
+                p.attributes
+                    b=`Availability: ${book.stocks}`
+                button.reserve Reserve
+
+        
