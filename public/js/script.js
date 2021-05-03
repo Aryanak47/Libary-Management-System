@@ -4,6 +4,27 @@
 const loginForm = document.querySelector('.login');
 const signupForm = document.querySelector('.signup');
 const search = document.querySelector('#search');
+const no_stocks_btn = document.querySelector('.no_stocks');
+
+
+
+// alert
+const hideAlert = () => {
+  const el = document.querySelector('.alert');
+  if (el) el.parentElement.removeChild(el);
+};
+
+// type is 'success' or 'error'
+const showAlert = (type, msg, time = 7) => {
+  hideAlert();
+  const markup = `<div class="alert alert--${type}">${msg}</div>`;
+  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
+  window.setTimeout(hideAlert, time * 1000);
+};
+
+
+
+
 if(loginForm){
     loginForm.addEventListener('submit',async e => {
         e.preventDefault();
@@ -21,15 +42,19 @@ if(loginForm){
                   password: password.value
                 }
               });
-              if(result.data.status ==="sucess"){   
+              if(result.data.status ==="sucess"){ 
+                showAlert('success', 'Logged in successfully!');  
                 setTimeout(() => {
                   window.location.assign('/')
                 },1500)
               }            
-        } catch (error) {
+        } catch (err) {
             btn.textContent = 'login'
-            alert('log in failed')
-            
+            if(err.response.data.error.statusCode === 500){
+              showAlert('error','Try again later');
+              return
+            }
+            showAlert('error', err.response.data.message); 
         }
         
     })
@@ -59,17 +84,30 @@ if(signupForm){
               name: name.value
             }
           });
-          if(result.data.status ==="sucess"){   
+          if(result.data.status ==="sucess"){  
+            showAlert('success', 'signed up  successfully!'); 
             setTimeout(() => {
               window.location.assign('/')
             },1500)
           }            
-    } catch (error) {
+    } catch (err) {
         btn.textContent = 'signup'
-        alert('signup failed')
-    }
+        if(err.response.data.error.statusCode === 500){
+          showAlert('error','Try again later');
+          return
+        }
+        showAlert('error', err.response.data.message); 
+      }
   })
 
 }
+
+if(no_stocks_btn){
+  no_stocks_btn.addEventListener('click',e => {
+    const { bookName } = e.target.dataset;
+    showAlert('info',`There is no any '${bookName}' book on stock`,3)
+  })
+}
+
 
 

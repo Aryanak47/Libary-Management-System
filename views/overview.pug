@@ -1,6 +1,7 @@
 
 extends base
 block content
+  include _header.pug
   .heading__box
     h1.heading__primary Reading book is boring only if you lack imagination
     a.btn.heading__btn(href='/mybook.html') Browse
@@ -15,17 +16,28 @@ block content
             img.card_img(src=`/img/book/${book.photo}` alt='')
             if book.new
               .new__tag New
-          a.btn.card__btn(href='/books.html') Reserve
+          if book.stocks < 1
+            button.btn(href=`#` data-book-name=`${book.name}` class='no_stocks') Reserve
+          else
+            a.btn(href=`/${book.slug}` data-book-name=`${book.name}` class='card__btn') Reserve
     .page
       -const current = currentPage * 1;
       if current > 1
         if term 
-           a(href=`/?term=${term}&page=${current -1}` class='previous page__btn') &lsaquo;
+           a(href=`/?term=${term}&page=${current -1}` class='previous page__btn')
+              svg.icon.page_icon
+                use(xlink:href='/img/sprite.svg#icon-cheveron-left')
         else
-         a(href=`/?page=${current -1}` class='previous page__btn') &lsaquo;
+         a(href=`/?page=${current -1}` class='previous page__btn')
+            svg.icon.page_icon
+              use(xlink:href='/img/sprite.svg#icon-cheveron-left')
       else if current < pagesCount
         if term 
-          a(href=`/?term=${term}&page=${current+1}` class='next page__btn') &rsaquo;
+          a(href=`/?term=${term}&page=${current+1}` class='next page__btn') 
+            svg.icon.page_icon.next_btn
+              use(xlink:href='/img/sprite.svg#icon-cheveron-right')
         else
-          a(href=`/?page=${current+1}` class='next page__btn') &rsaquo;
+          a(href=`/?page=${current+1}` class='next page__btn')
+            svg.icon.page_icon.next_btn
+              use(xlink:href='/img/sprite.svg#icon-cheveron-right')
 
