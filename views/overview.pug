@@ -7,6 +7,8 @@ block content
     a.btn.heading__btn(href='/mybook.html') Browse
   section.card__section
     h2.heading__secondary Books
+    if !found && term
+      h2(class="search__heading")=`No result found for '${term}'`
     .cards
       each book in books
         if !book.name

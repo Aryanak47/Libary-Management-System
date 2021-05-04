@@ -47,6 +47,7 @@ exports.getSearch = (req, res) => {
       pagesCount: results.totalPages,
       currentPage: page,
       term: req.query.term,
+      found: results.docs.length > 0,
     });
   });
 };

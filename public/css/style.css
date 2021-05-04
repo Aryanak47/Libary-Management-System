@@ -137,6 +137,10 @@ a{
     border-radius: 1rem;
     margin-right: 0.3rem;
 }
+.search__heading{
+    margin: 2rem 0;
+    font-size: 2.5rem;
+}
 
 .heading__box {
     /* display: flex;
