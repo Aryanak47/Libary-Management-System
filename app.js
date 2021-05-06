@@ -10,6 +10,7 @@ const errorController = require('./controllers/errorController');
 const bookRouter = require('./routers/bookRouter');
 const userRouter = require('./routers/userRouter');
 const viewRouter = require('./routers/viewRouter');
+const reserveRouter = require('./routers/reserveRouter');
 
 app.set('view engine', 'pug');
 app.set('views', `${__dirname}/views`);
@@ -35,6 +36,7 @@ mongoose
 app.use('/', viewRouter);
 app.use('/api/books', bookRouter);
 app.use('/api/users', userRouter);
+app.use('/api/reserve', reserveRouter);
 
 // 4) handling other invalid routes
 app.all('*', (req, res, next) => {

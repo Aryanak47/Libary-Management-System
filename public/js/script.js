@@ -1,10 +1,13 @@
 /* eslint-disable */
 
 
+
+
 const loginForm = document.querySelector('.login');
 const signupForm = document.querySelector('.signup');
 const search = document.querySelector('#search');
 const no_stocks_btn = document.querySelector('.no_stocks');
+const reserveBtn = document.querySelector('.reserve');
 
 
 
@@ -106,6 +109,39 @@ if(no_stocks_btn){
   no_stocks_btn.addEventListener('click',e => {
     const { bookName } = e.target.dataset;
     showAlert('info',`There is no any '${bookName}' book on stock`,3)
+  })
+}
+
+if(reserveBtn){
+  reserveBtn.addEventListener('click',async e => {
+    const {book} = e.target.dataset
+    const {user} = e.target.dataset
+    reserveBtn.textContent = 'Processing....'
+
+    try {
+        const result = await axios({
+          method: 'post',
+          url: `http://127.0.0.1:8000/api/reserve`,
+          data: {
+            user,
+            book,
+          }
+        });
+        if(result.data.status ==="success"){ 
+          showAlert('success', 'Your requested book is on review!');  
+        }  
+        reserveBtn.textContent = 'Reserve'          
+    } catch (err) {
+      reserveBtn.textContent = 'Reserve'
+      if(err.response.data.error.statusCode === 500){
+        showAlert('error','Try again later');
+        return
+      }
+      showAlert('error', err.response.data.message); 
+    }
+
+   
+
   })
 }
 

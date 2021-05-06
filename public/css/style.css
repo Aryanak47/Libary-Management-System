@@ -472,7 +472,9 @@ input[type='password'] {
     box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
     outline: none;
 }
-
+.reserve:focus{
+    outline:none;
+}
 
 /* Footer */
 

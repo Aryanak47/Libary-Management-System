@@ -60,8 +60,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
-  } else if (req.cookie.jwt) {
-    token = req.cookie.jwt;
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
   if (!token) next(new AppError('Please login again', 400));
   // verify token
@@ -70,7 +70,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   const user = await User.findById(decode.id);
   if (!user) next(new AppError('This user does not exist anymore', 401));
   // check if user has changed password
-  if (user.checkChangePassword(decode.iat))
+  if (user.checkPasswordChanged(decode.iat))
     next(
       new AppError(
         'User belonging to this account has recently changed password,please login again',
@@ -78,12 +78,13 @@ exports.protect = catchAsync(async (req, res, next) => {
       )
     );
   req.user = user;
+  res.locals.user = user;
   next();
 });
 
 //  this middlewear give access to routes according to their role
 exports.restrictTo = (...role) => (req, res, next) => {
-  if (!role.includes(res.user.role))
+  if (!role.includes(req.user.role))
     next(new AppError('You do not have permission to perform this action !'));
   next();
 };

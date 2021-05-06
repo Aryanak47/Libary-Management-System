@@ -43,6 +43,6 @@ block content
                     b=`Author: ${book.authors.join(', ')}`
                 p.attributes
                     b=`Availability: ${book.stocks}`
-                button.reserve Reserve
+                button.reserve(data-book=`${book.id}` data-user=`${user.id}`) Reserve
 
         
