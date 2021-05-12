@@ -6,6 +6,15 @@ const router = express.Router();
 router.use(authController.isLoggedIn);
 router.route('/').get(authController.isLoggedIn, viewController.getOverView);
 router
+  .route('/uploadBook')
+  .get(
+    authController.isLoggedIn,
+    viewController.checkLogedIn,
+    authController.restrictTo('admin'),
+    viewController.getUpload
+  );
+
+router
   .route('/search')
   .get(authController.isLoggedIn, viewController.getSearch);
 router
@@ -19,5 +28,6 @@ router
     viewController.checkLogedIn,
     viewController.getBook
   );
+
 
 module.exports = router;

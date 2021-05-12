@@ -1,13 +1,23 @@
 const Book = require('../model/bookModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
+const Reservation = require('../model/userBook');
 
-exports.getOverView = (req, res) => {
+exports.getOverView = catchAsync( async(req, res) => {
   const page = req.query.page || 1;
   const options = {
     page: page,
     limit: 3,
   };
+  if(req.user){
+    if( req.user.role === "admin" ) {
+      const reservation = await Reservation.find({approve:false});
+      return res.status(200).render('adminhome', {
+      reservation,
+      title: 'Book Request',
+      });
+    }
+  }
   Book.paginate({}, options).then((result) => {
     res.status(200).render('overview', {
       books: result.docs,
@@ -16,7 +26,7 @@ exports.getOverView = (req, res) => {
       title: 'Books',
     });
   });
-};
+});
 
 exports.getBook = catchAsync(async (req, res, next) => {
   const book = await Book.findOne({ slug: req.params.slug });
@@ -77,4 +87,10 @@ exports.checkLogedIn = (req, res, next) => {
   } else {
     next();
   }
+};
+
+exports.getUpload = (req, res) => {
+  res.status(200).render('adminUploadBook', {
+    title: 'Upload Book',
+  });
 };

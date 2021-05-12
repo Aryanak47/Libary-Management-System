@@ -1,0 +1,43 @@
+extends base 
+block content 
+    include _adminHeader.pug
+    append head
+        link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+        link(rel='stylesheet' type='text/css' href='//cdn.datatables.net/1.10.15/css/jquery.dataTables.css')
+        link(rel='stylesheet' href='/css/style.css')
+        script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js')
+        script(type='text/javascript' src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')
+
+    table#dtBasicExample.table.table-striped.table-bordered.table-sm(cellspacing='0' width='100%')
+        thead
+            tr
+                th.th-sm
+                    | S.N
+                th.th-sm
+                    | Book
+                th.th-sm
+                    | User Name
+                th.th-sm
+                    | User Email
+                th.th-sm
+                    | Operations
+        tbody
+             if reservation
+                each reserve,i in reservation
+                    tr
+                        td=`${i+1}`
+                        td.img_col
+                            img.book__photo(src=`/img/book/${reserve.book.photo}` alt='book image')
+                            p.book_name=reserve.book.name 
+                        td=reserve.user.name
+                        td=reserve.user.email
+                        td
+                            button.approve( data-reserve-id=`${reserve.id}`) Approve
+                            button.reject( data-reserve-id=`${reserve.id}`) Reject
+    script.
+        $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+        "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
+        });
+        $('.dataTables_length').addClass('bs-select');
+        });

@@ -47,6 +47,18 @@ a{
     background-position: center;
     position: relative;
 }
+.admin__txt{
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+   
+}
+@media screen and (max-width: 992px) {
+  .admin__txt {
+    font-size: 1.2rem;
+  }
+}
 
 .navigation {
     display: flex;
@@ -75,6 +87,7 @@ a{
     display: flex;
     list-style: none;
     align-items: center;
+    margin-bottom: 0 !important;
 }
 
 .navigation__link {
@@ -86,7 +99,7 @@ a{
 
 .header__logo {
     color: var(--Grey-light-3) !important;
-   
+    margin-bottom: 0 !important;
     font-size: 1rem;
     font-weight: bold;
 }
@@ -222,7 +235,6 @@ a{
 }
 .img__container {
     position: relative;
-    width:50%;
 }
 
 .card__btn,
@@ -284,7 +296,7 @@ a{
   
   .next {
     background-color: var(--primary);
-    color: white;
+    color: white !important;
   }
 
 /* Sign-up style */
@@ -488,45 +500,45 @@ input[type='password'] {
     margin: 2em;
     background: #d8d8d8;
 }
-
-.search__records {
-    margin-top: 2em;
-    margin-left: 70%;
-    /* display: grid;
-    grid-wrap: wrap; */
+.img_col{
+display: flex;
+align-items: center;
 }
-
-.search__records input{
-    border: 1;
+#dtBasicExample_wrapper{
+    margin: 2rem;
+}
+#dtBasicExample_wrapper input{
+   
     outline: none;
-    padding: 10px;
+    border: 1px solid #ccc;
+    padding: 0 0.3rem;
+    border-radius: 0.5rem;
+    width:20rem;
+    transition: all 0.2s;
+    color: inherit;
 }
-
-.search__records button {
-    padding: 12px 20px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 5px;
+#dtBasicExample_filter{
+    margin-bottom: 2rem;
 }
-
-
-.table-header {
-    margin: 2em 3em 2em 3em ;
-    padding: 2em;
-    background: crimson;
+#dtBasicExample_wrapper{
+    color: #fff;
+    font-size:1.5rem;
+   
 }
-
-.table-header ul{
-    color: white;
-    font-size: 1.2em;
-    list-style: none;
+#dtBasicExample_filter{
+    
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    /* align-content: space-around; */
+    width: 100%;
+    justify-content: flex-end;
+
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .previous{
+    color: var(--primary) !important;
+}
+
 
 .book__photo {
     width: 2.5rem;
@@ -536,49 +548,37 @@ input[type='password'] {
     margin-right: 2rem;
 }
 
-.book__item {
-    margin: 0 1.5rem;
-}
 
 .book {
     display: flex;
     align-items: center;
 }
-
-.table-content ul{
-    color: black;
-    font-weight: bold;
-    font-size: 1.em;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    /* align-content: space-around; */
-    margin-bottom: 2em;
+.book_name{
+    margin-bottom: 0;
 }
 
-
-
-
-.table-content button {
+td .reject,
+.approve {
     color: white;
-    font-size: 1.7em;
     border: none;
-    background: var(--primary);
-    padding: 0.5em 1em;
-    margin: 0.3em;
+    background: #F14343;
+    padding: .5rem 1rem;
+    margin: 0.3rem;
     border-radius: 5px;
 }
 
-.table-content button.approve {
+td .reject,
+.approve:focus{
+    outline: none;
+}
+td {
+    color: var(--Grey-dark-2) !important;
+}
+
+td .approve {
     background: #3686ff;
 }
 
-.table-content button:hover {
-    cursor: pointer;
-    opacity: 0.8;
-}
 
 /* Footer */
 
@@ -590,7 +590,6 @@ input[type='password'] {
     font-size: 1.1rem;
     font-weight: 500;
     text-align: center;
-    margin-top: ;
 }
 
 .footer {
@@ -706,10 +705,21 @@ background-color: #ecd02f;
 .card2{
     color:rgb(240, 60, 96);
     font-size: 18px;
-    text-align: center;
-    
-   
+    text-align: center; 
 } 
+.upload_txt{
+   transform: scale(1);
+    transition: all 0.2s;
+}
+.upload_txt:hover{
+    cursor: pointer;
+   
+
+}
+.card2:hover .upload_txt{
+    transform: scale(1.5);
+
+}
 .table-header1 {
     margin: 2em 3em 2em 3em ;
     padding: 2em;
@@ -741,7 +751,12 @@ table{
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 8px;
+    height:15rem;
 
+}
+.image img{
+    width:fit-content;
+    height:100%;
 }
 
 th{

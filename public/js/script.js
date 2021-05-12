@@ -8,6 +8,8 @@ const signupForm = document.querySelector('.signup');
 const search = document.querySelector('#search');
 const no_stocks_btn = document.querySelector('.no_stocks');
 const reserveBtn = document.querySelector('.reserve');
+const approveBtns =  document.getElementsByClassName('approve');
+const rejectBtns = document.getElementsByClassName('reject'); 
 
 
 
@@ -24,10 +26,6 @@ const showAlert = (type, msg, time = 7) => {
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   window.setTimeout(hideAlert, time * 1000);
 };
-
-
-
-
 if(loginForm){
     loginForm.addEventListener('submit',async e => {
         e.preventDefault();
@@ -139,10 +137,73 @@ if(reserveBtn){
       }
       showAlert('error', err.response.data.message); 
     }
-
-   
-
   })
+}
+
+if(rejectBtns){
+  for (const reject of rejectBtns) {
+    reject.addEventListener('click', async function(e){
+      const { reserveId } = e.target.dataset
+      const row = reject.parentElement.parentElement
+      try{
+        reject.textContent = 'Processing...'
+        const result = await axios({
+          method: 'delete',
+          url: `http://127.0.0.1:8000/api/reserve/${reserveId}`,
+        });
+        if(result.data.status ==="success"){ 
+          showAlert('success', 'Rejected !');  
+          row.parentElement.removeChild(row)
+        }  
+        reject.textContent = 'Reject'          
+      } catch (err) {
+        reject.textContent = 'Reject'
+        if(err.response.data.error.statusCode === 500){
+          showAlert('error','Try again later');
+          return
+        }
+        showAlert('error', err.response.data.message); 
+      }  
+
+    })
+  }
+
+ 
+}
+if(approveBtns){
+  for (const approve of approveBtns) {
+    approve.addEventListener('click', async function(e){
+      const { reserveId } = e.target.dataset
+      const row = approve.parentElement.parentElement
+      try{
+        approve.textContent = 'Processing...'
+        const result = await axios({
+          method: 'patch',
+          url: `http://127.0.0.1:8000/api/reserve/approval/${reserveId}`,
+          data: {
+            approve:true,
+            expireDate:new Date(
+              Date.now() + 1 * 24 * 60 * 60 * 1000
+            ),
+            issueDate:Date.now()
+          }
+        });
+        if(result.data.status ==="success"){ 
+          showAlert('success', 'Approved !');  
+          row.parentElement.removeChild(row)
+          
+        }  
+        approve.textContent = 'Approve'          
+      } catch (err) {
+        approve.textContent = 'Approve'
+        if(err.response.data.error.statusCode === 500){
+          showAlert('error','Try again later');
+          return
+        }
+        showAlert('error', err.response.data.message); 
+      }  
+    }
+  )}
 }
 
 

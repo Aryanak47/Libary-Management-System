@@ -1,8 +1,9 @@
 const Reserve = require('../model/userBook');
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
+const Book = require('../model/bookModel')
 
-exports.createBook = catchAsync(async (req, res) => {
+exports.createReserve = catchAsync(async (req, res) => {
   const doc = await Reserve.create(req.body);
   
   res.status(200).json({
@@ -38,7 +39,7 @@ exports.getReserves = catchAsync(async (req, res) => {
 });
 
 exports.updateReserve = catchAsync(async (req, res) => {
-  const doc = await Reserve.findByIdAndUpdate(req.params.book, req.body, {
+  const doc = await Reserve.findByIdAndUpdate(req.params.reserve, req.body, {
     new: true,
     runValidators: true,
   });
@@ -49,10 +50,29 @@ exports.updateReserve = catchAsync(async (req, res) => {
     },
   });
 });
-exports.deleteBook = catchAsync(async (req, res) => {
-  await Reserve.findByIdAndDelete(req.params.book);
+exports.deleteReserve = catchAsync(async (req, res) => {
+  await Reserve.findByIdAndDelete(req.params.reserve);
   res.status(200).json({
     status: 'success',
     message: 'sucessfully deleted',
   });
 });
+
+exports.reservationApprove = catchAsync(async (req, res) => {
+  // first update the reservation
+  const doc = await Reserve.findByIdAndUpdate(req.params.reserve, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  // find the book and deduct the number of stocks
+  const book = await Book.findById(doc.book.id)
+  book.stocks = book.stocks -1;
+  book.save({validateBeforeSave: false});
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: doc,
+    },
+  });
+
+})

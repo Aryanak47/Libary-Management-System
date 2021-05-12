@@ -1,0 +1,46 @@
+extends base 
+block content 
+    include _adminHeader.pug
+    section.card__section
+        .card2
+            img.card_image(src='/img/upload.png' alt='')
+            h3.upload_txt  Upload Book
+        .small-container.table_book
+            table
+                tr
+                    th Cover
+                    th Details
+                    th Operation
+                tr
+                    td
+                        .image
+                            img(src='./img/book/book2.jpg')
+                    td
+                        | Name   : Revolution 2020
+                        br
+                        |                     Author : Chetan Bhagat
+                    td
+                        button.edit(type='submit') Edit
+                        button.btn1(type='submit') Delete
+                tr
+                    td
+                        .image
+                            img(src='./img/book/book1.jpg')
+                    td
+                        | Name   : One Arranged Marriage Murder
+                        br
+                        |                     Author : Chetan Bhagat
+                    td
+                        button.edit(type='submit') Edit
+                        button.btn1(type='submit') Delete
+                tr
+                    td
+                        .image
+                            img(src='./img/book/book2.jpg')
+                    td
+                        | Name   : Revolution 2020
+                        br
+                        |                     Author : Chetan Bhagat
+                    td
+                        button.edit(type='submit') Edit
+                        button.btn1(type='submit') Delete
