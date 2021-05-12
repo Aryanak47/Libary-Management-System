@@ -94,3 +94,11 @@ exports.getUpload = (req, res) => {
     title: 'Upload Book',
   });
 };
+
+exports.getMyBooks = catchAsync(async (req, res) => {
+  const reserves = await Reservation.find({ user:req.user.id, approve:true });
+  res.status(200).render('myBook', {
+    title: 'My Books',
+    reserves
+  });
+})

@@ -7,6 +7,7 @@ const reserveController = require('../controllers/reserveController');
 router.use(authController.protect);
 
 router.route('/').post(reserveController.createReserve);
+router.route('/:user').get(reserveController.getUserReserved);
 router.use(authController.restrictTo('admin'));
 router.route('/').get(reserveController.getReserves);
 router

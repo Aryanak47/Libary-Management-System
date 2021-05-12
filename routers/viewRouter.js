@@ -13,6 +13,15 @@ router
     authController.restrictTo('admin'),
     viewController.getUpload
   );
+  
+  router
+  .route('/mybooks')
+  .get(
+    authController.isLoggedIn,
+    viewController.checkLogedIn,
+    authController.restrictTo('user'),
+    viewController.getMyBooks
+  );
 
 router
   .route('/search')
@@ -28,6 +37,8 @@ router
     viewController.checkLogedIn,
     viewController.getBook
   );
+
+
 
 
 module.exports = router;

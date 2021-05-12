@@ -37,6 +37,18 @@ exports.getReserves = catchAsync(async (req, res) => {
     },
   });
 });
+exports.getUserReserved = catchAsync(async (req, res) => {
+  if(!req.params){
+    next(new AppError('Please provide user id',400));
+  }
+  const reserves = await Reserve.find({ user:req.params, approve:true });
+  res.status(200).json({
+    status: 'success',
+    data: {
+      reserves,
+    },
+  });
+});
 
 exports.updateReserve = catchAsync(async (req, res) => {
   const doc = await Reserve.findByIdAndUpdate(req.params.reserve, req.body, {

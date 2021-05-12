@@ -53,7 +53,7 @@ userBookScema.virtual('totalFine').get( function() {
 userBookScema.pre(/^find/, function (next) {
   this.populate('user').populate({
     path: 'book',
-    select:'name photo'
+    select:'name photo authors genre'
   });
   next();
 });
