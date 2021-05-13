@@ -10,6 +10,7 @@ const no_stocks_btn = document.querySelector('.no_stocks');
 const reserveBtn = document.querySelector('.reserve');
 const approveBtns =  document.getElementsByClassName('approve');
 const rejectBtns = document.getElementsByClassName('reject'); 
+const profile = document.getElementsByClassName('profile')[0]; 
 
 
 
@@ -205,6 +206,23 @@ if(approveBtns){
     }
   )}
 }
+if(profile){
+  profile.addEventListener('click',async e =>{
+    try {
+      const result = await axios({
+          method: 'get',
+          url: 'http://127.0.0.1:8000/api/users/logout',
+        });
+        if(result.data.status ==="success"){ 
+          location.reload(true);
+          showAlert('success', 'Logged out successfully!');  
+        }            
+  } catch (err) {
+      showAlert('error','Try again later');
+     
+  }
 
+  })
+}
 
 

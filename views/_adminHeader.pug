@@ -9,4 +9,7 @@ header
                 a.navigation__link(href='/') Book request
             li.navigation__item
                 a.navigation__link(href='/uploadBook') Add books
+            li#profile.navigation__item.profile
+              img.user__photo(src=`/img/user/${user.photo}` alt='user photo')
+              a.navigation__link(href='/')=user.name
             
