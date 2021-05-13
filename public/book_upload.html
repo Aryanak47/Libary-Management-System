@@ -10,36 +10,26 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/style.css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha256-OFRAJNoaD8L3Br5lglV7VyLRf0itmoBzWUoM+Sji4/8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-angular.min.js" integrity="sha512-KT0oYlhnDf0XQfjuCS/QIw4sjTHdkefv8rOJY5HHdNEZ6AmOh1DW/ZdSqpipe+2AEXym5D0khNu95Mtmw9VNKg==" crossorigin="anonymous"></script>
+    <title>Library Management System</title>
+    <style type="text/css">
+       
+       
+    </style>
   </head>
 
   <body>
-    <header class="head">
-      <div class="navigation">
-        <a href="/public/overview.html">
-          <p class="header__logo">Library 📚</p></a
-        >
-        <form class="admin-header">
-            <p class="header__logo">Admin Panel</p></a
-          >
-        </form>
-        <nav class="navigation__nav">
-          <ul class="navigation__list">
-            <li class="navigation__item">
-              <a href="#" class="navigation__link"> Book Request </a>
-            </li>
-            <li class="navigation__item profile">
-              <a href="./signup.html" class="navigation__link">Add Books</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <!-- BODY -->
     <section class="card__section">
           <div class="card2">
             <img src="./img/book_upload.png" alt="" class="card_image" />
-            <h3> Upload Book</h3>
+            <a href="#popup" > Upload Book</a>
           </div>
       </section>
 
@@ -94,9 +84,61 @@
         </table>
         </div>
 
+        <div class="pop" id="popup">
+          <div class="pop__content">
+            <a href="#book-tours" class="pop__close"> &#10006;</a>
+            <form class="form bookForm">
+                <div class="form-group col-md-6">
+                    <label for="inputBookName">Name</label>
+                    <input type="text" class="form-control" id="inputBookName" placeholder="">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputAuthor">Authors</label>
+                    <input type="text" data-role="tagsinput" class="form-control" id="inputAuthor" placeholder="">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <label for="inputISBN">ISBN</label>
+                    <input type="text" class="form-control" id="inputISBN" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                    <label for="inputGenre">Genre</label>
+                    <select id="inputGenre" class="form-control">
+                        <option selected>other</option>
+                        <option>Self-help</option>
+                        <option>sports</option>
+                        <option>Contemporary</option>
+                        <option>Business/ Economics</option>
+                    
+                    </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                    <label for="inputStock">Stocks</label>
+                    <input type="number" class="form-control" id="inputStock" required>
+                    </div>
+                </div>
+                    <div class="custom-file  col-md-6  mg-btn">
+                        <input type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" required>
+                        <label class="custom-file-label" style="font-size:1rem" for="validatedCustomFile">Choose photo...</label>
+                        <div class="invalid-feedback"> invalid  file </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Summary">Summary</label>
+                        <textarea class="form-control" id="Summary" rows="3"></textarea>
+                    </div>
+                    <div class="form-check col-md-6">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">New </label>
+                    </div>
+                    <button id="uploadBtn" class="btn">Upload</button>
+            </form>
+          </div>
+      </div>
+
     <!-- Copyright -->
     <div class="admin-footer">
       <p>Copyright © 2021 All rights reserved.</p>
     </div>
   </body>
+  <script src="./js/tagsinput.js"></script>
 </html>

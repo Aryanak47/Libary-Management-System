@@ -4,12 +4,15 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 const bookController = require('../controllers/bookController');
 
+
 router
   .route('/')
   .get(bookController.getBooks)
   .post(
     authController.protect,
     authController.restrictTo('admin'),
+    bookController.uploadBookPhoto,
+    bookController.resizeBookPhoto,
     bookController.createBook
   );
 router

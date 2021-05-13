@@ -4,10 +4,12 @@ const AppError = require('../utils/AppError');
 const Reservation = require('../model/userBook');
 
 exports.getOverView = catchAsync( async(req, res) => {
+  const books = await Book.find();
+  const totalBooks = books.length;
   const page = req.query.page || 1;
   const options = {
     page: page,
-    limit: 3,
+    limit: 4,
   };
   if(req.user){
     if( req.user.role === "admin" ) {
@@ -21,7 +23,7 @@ exports.getOverView = catchAsync( async(req, res) => {
   Book.paginate({}, options).then((result) => {
     res.status(200).render('overview', {
       books: result.docs,
-      pagesCount: result.totalPages,
+      pagesCount: Math.round(totalBooks/4),
       currentPage: page,
       title: 'Books',
     });

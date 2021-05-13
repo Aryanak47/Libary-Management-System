@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser')
 const AppError = require('./utils/AppError');
 const errorController = require('./controllers/errorController');
 const bookRouter = require('./routers/bookRouter');
@@ -19,6 +20,11 @@ app.use(express.static(`${__dirname}/public`));
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+// create application/json parser
+var jsonParser = bodyParser.json()
+ 
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // Connecting database
 

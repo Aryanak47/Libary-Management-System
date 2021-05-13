@@ -11,6 +11,7 @@ const reserveBtn = document.querySelector('.reserve');
 const approveBtns =  document.getElementsByClassName('approve');
 const rejectBtns = document.getElementsByClassName('reject'); 
 const profile = document.getElementsByClassName('profile')[0]; 
+const bookForm = document.querySelector('.bookForm');
 
 
 
@@ -225,4 +226,41 @@ if(profile){
   })
 }
 
-
+if(bookForm){
+  bookForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById('uploadBtn');
+      btn.textContent="uploading..."
+      var formData = new FormData();
+      formData.append("name", document.getElementById('inputBookName').value);
+      formData.append("ISBN", document.getElementById('inputISBN').value);
+      formData.append("stocks", document.getElementById('inputStock').value);
+      formData.append("summary", document.getElementById('Summary').value);
+      formData.append("genre", document.getElementById('inputGenre').value);
+      formData.append("photo", document.querySelector('#validatedCustomFile').files[0]);
+      const check = document.querySelector(`input[type="checkbox"]:checked`)
+      const newBook = check !==null ? true:false;
+      formData.append("newBook",newBook);
+      const badges = document.getElementsByClassName('badge')
+      const authors = []
+      for (const badge of badges) {
+          authors.push(badge.textContent)
+      }
+      formData.append("authors",authors);
+      try {
+          const result = await axios.post('http://127.0.0.1:8000/api/books',formData);
+          if(result.data.status ==="success"){  
+            showAlert('success', 'successfully uploaded!'); 
+            setTimeout(() => {
+              window.location.assign('/uploadBook') 
+            },1500)
+           
+          } 
+          btn.textContent = 'upload'           
+      }catch (err) {
+          btn.textContent = 'upload'
+          showAlert('error',`uploading failed try later ! Maybe because of dublicate name or ISBN number`);
+         
+      }
+  })
+}

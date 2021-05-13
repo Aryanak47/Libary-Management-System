@@ -209,7 +209,8 @@ a{
 
 /* Card Section */
 .card_img{
-    width:100%
+    width:15rem;
+    height:22rem;
 }
 .new__tag{
     background-color: var(--primary);
@@ -707,19 +708,24 @@ background-color: #ecd02f;
     font-size: 18px;
     text-align: center; 
 } 
-.upload_txt{
+.upload_txt:link,
+.upload_txt:visited{
    transform: scale(1);
-    transition: all 0.2s;
+   color:var(--primary);
+   font-size:1.6rem;
+   transition: all 2s;
+   display:inline-block;
+   font-weight:700;
 }
-.upload_txt:hover{
+.upload_txt:hover,
+.upload_txt:active{
     cursor: pointer;
+    color:var(--primary);
+    transform: scale(1.3);
    
 
 }
-.card2:hover .upload_txt{
-    transform: scale(1.5);
 
-}
 .table-header1 {
     margin: 2em 3em 2em 3em ;
     padding: 2em;
@@ -805,3 +811,135 @@ tr:nth-child(even) {
     cursor: pointer;
     opacity: 0.8;
 }
+
+
+
+
+
+/* book upload pop up */
+.pop{
+    z-index: 20;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+}
+
+.pop__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: scroll;
+    background-color: #fff;
+    width: 75%;
+    border-radius: 1rem;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) !important;
+    transition: all 0.4s .2s;
+    padding: 2rem;
+    height: 90vh;
+     
+
+}
+.pop:target{
+    opacity: 1;
+    visibility: visible;
+}
+.pop:target .pop__content{
+    transform: translate(-50%, -50%) scale(1) !important;
+    opacity: 1;
+}
+.pop__close:link,
+.pop__close:visited{
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+}
+.pop__close:active,
+.pop__close:hover{
+    color: var(--primary)
+}
+
+
+
+.btn{
+    cursor: pointer;
+    outline: none;
+    border:none;
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: var(--Grey-light-1);
+   
+ 
+
+}
+#uploadBtn{
+    background-image: var(--background-color);
+    margin-top: 2rem;
+    padding: 0.8rem 3rem;
+
+}
+.bookForm{
+    display:flex;
+    flex-direction:column;
+
+}
+.bookForm label{
+    font-size: 1.5rem;
+    font-weight:700;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.bookForm .form-check{
+    display: flex;
+    align-items: center;
+}
+
+.mg-btn{
+    margin-bottom: 2rem;
+}
+
+.badge-info{
+    background-color: #eb2f64;
+    padding: .5rem;
+    font-size: 1rem;
+    margin-right: 5px;
+    margin-top: 3px;
+}   
+
+.bootstrap-tagsinput input{
+    font-size: 1rem;
+}
+
+.label {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,
+    border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-control{
+    height:initial;
+    padding:4px 10px ;
+}
+

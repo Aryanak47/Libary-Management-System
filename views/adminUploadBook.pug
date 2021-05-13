@@ -1,10 +1,19 @@
 extends base 
 block content 
     include _adminHeader.pug
+    append head 
+        link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css' integrity='sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==' crossorigin='anonymous')
+        script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha256-OFRAJNoaD8L3Br5lglV7VyLRf0itmoBzWUoM+Sji4/8=' crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js' integrity='sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==' crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-angular.min.js' integrity='sha512-KT0oYlhnDf0XQfjuCS/QIw4sjTHdkefv8rOJY5HHdNEZ6AmOh1DW/ZdSqpipe+2AEXym5D0khNu95Mtmw9VNKg==' crossorigin='anonymous')
+        link(rel='stylesheet' href='./css/style.css')
+
     section.card__section
         .card2
-            img.card_image(src='/img/upload.png' alt='')
-            h3.upload_txt  Upload Book
+            img.card_image(src='/img/upload.png' alt='upload image')
+            a(href='#popup' class="upload_txt")  Upload Book
         .small-container.table_book
             table
                 tr
@@ -44,3 +53,40 @@ block content
                     td
                         button.edit(type='submit') Edit
                         button.btn1(type='submit') Delete
+    #popup.pop
+        .pop__content
+            a.pop__close(href='#upload-book')  &#x2716;
+            form.form.bookForm
+                .form-group.col-md-6
+                    label(for='inputBookName') Name
+                    input#inputBookName.form-control(type='text' placeholder='')
+                .form-group.col-md-6
+                    label(for='inputAuthor') Authors
+                    input#inputAuthor.form-control(type='text' data-role='tagsinput' placeholder='')
+                .form-row
+                    .form-group.col-md-6
+                        label(for='inputISBN') ISBN
+                        input#inputISBN.form-control(type='text' required='')
+                    .form-group.col-md-4
+                        label(for='inputGenre') Genre
+                        select#inputGenre.form-control
+                            option(selected='') other
+                            option Self-help
+                            option sports
+                            option Contemporary
+                            option Business/ Economics
+                    .form-group.col-md-2
+                        label(for='inputStock') Stocks
+                        input#inputStock.form-control(type='number' required='')
+                .custom-file.col-md-6.mg-btn
+                    input#validatedCustomFile.custom-file-input(type='file' accept='image/*' required='')
+                    label.custom-file-label(style='font-size:1rem' for='validatedCustomFile') Choose photo...
+                    .invalid-feedback  invalid  file 
+                .form-group.col-md-6
+                    label(for='Summary') Summary
+                    textarea#Summary.form-control(rows='3')
+                .form-check.col-md-6
+                    input#gridCheck.form-check-input(type='checkbox')
+                    label.form-check-label(for='gridCheck') New 
+                button#uploadBtn.btn Upload
+    script(src='./js/tagsinput.js')

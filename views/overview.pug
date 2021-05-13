@@ -33,7 +33,7 @@ block content
          a(href=`/?page=${current -1}` class='previous page__btn')
             svg.icon.page_icon
               use(xlink:href='/img/sprite.svg#icon-cheveron-left')
-      else if current < pagesCount
+      if current < pagesCount
         if term 
           a(href=`/?term=${term}&page=${current+1}` class='next page__btn') 
             svg.icon.page_icon.next_btn

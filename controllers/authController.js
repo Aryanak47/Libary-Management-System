@@ -114,8 +114,7 @@ exports.isLoggedIn = async (req, res, next) => {
   }
   next();
 };
-exports.logout = (req, res, next) => {
-  console.log('on the way to log out');
+exports.logout = (req, res) => {
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 1 * 1000),
     httpOnly: true
