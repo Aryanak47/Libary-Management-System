@@ -4,13 +4,6 @@ const AppError = require('../utils/AppError');
 const Reservation = require('../model/userBook');
 
 exports.getOverView = catchAsync( async(req, res) => {
-  const books = await Book.find();
-  const totalBooks = books.length;
-  const page = req.query.page || 1;
-  const options = {
-    page: page,
-    limit: 4,
-  };
   if(req.user){
     if( req.user.role === "admin" ) {
       const reservation = await Reservation.find({approve:false});
@@ -20,6 +13,14 @@ exports.getOverView = catchAsync( async(req, res) => {
       });
     }
   }
+  const books = await Book.find();
+  const totalBooks = books.length;
+  const page = req.query.page || 1;
+  const options = {
+    page: page,
+    limit: 4,
+  };
+
   Book.paginate({}, options).then((result) => {
     res.status(200).render('overview', {
       books: result.docs,
@@ -91,11 +92,23 @@ exports.checkLogedIn = (req, res, next) => {
   }
 };
 
-exports.getUpload = (req, res) => {
-  res.status(200).render('adminUploadBook', {
-    title: 'Upload Book',
+exports.getUpload = catchAsync(async (req, res) => {
+  const books = await Book.find();
+  const totalBooks = books.length;
+  const page = req.query.page || 1;
+  const options = {
+    page: page,
+    limit: 4,
+  };
+  Book.paginate({}, options).then((result) => {
+    res.status(200).render('adminUploadBook', {
+      books: result.docs,
+      pagesCount: Math.round(totalBooks/4),
+      currentPage: page,
+      title: 'Upload Book',
+    });
   });
-};
+});
 
 exports.getMyBooks = catchAsync(async (req, res) => {
   const reserves = await Reservation.find({ user:req.user.id, approve:true });

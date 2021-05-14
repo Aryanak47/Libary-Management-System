@@ -79,7 +79,14 @@ exports.getBooks = catchAsync(async (req, res) => {
 });
 
 exports.updateBook = catchAsync(async (req, res) => {
-  const doc = await Book.findByIdAndUpdate(req.params.id, req.body, {
+  const { name, genre, ISBN, authors, stocks } = req.body;
+  const doc = await Book.findByIdAndUpdate(req.params.id, {
+    name:name,
+    genre:genre,
+    ISBN:ISBN,
+    authors:authors,
+    stocks:stocks
+  }, {
     new: true,
     runValidators: true,
   });

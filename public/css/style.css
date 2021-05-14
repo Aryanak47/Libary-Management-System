@@ -756,12 +756,10 @@ table{
 .image{
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 8px;
     height:15rem;
 
 }
 .image img{
-    width:fit-content;
     height:100%;
 }
 
@@ -792,7 +790,7 @@ tr:nth-child(even) {
     border: none;
     padding: 0.5em 1em;
     margin: 0.3em;
-    border-radius: 5px;
+    border-radius: 5px !important;
 }
 .btn1{
     background:#eb2f64;
@@ -883,12 +881,14 @@ tr:nth-child(even) {
  
 
 }
-#uploadBtn{
+#uploadBtn,
+#updateBtn{
     background-image: var(--background-color);
     margin-top: 2rem;
     padding: 0.8rem 3rem;
 
 }
+
 .bookForm{
     display:flex;
     flex-direction:column;

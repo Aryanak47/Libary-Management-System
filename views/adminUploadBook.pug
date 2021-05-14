@@ -20,39 +20,31 @@ block content
                     th Cover
                     th Details
                     th Operation
-                tr
-                    td
-                        .image
-                            img(src='./img/book/book2.jpg')
-                    td
-                        | Name   : Revolution 2020
-                        br
-                        |                     Author : Chetan Bhagat
-                    td
-                        button.edit(type='submit') Edit
-                        button.btn1(type='submit') Delete
-                tr
-                    td
-                        .image
-                            img(src='./img/book/book1.jpg')
-                    td
-                        | Name   : One Arranged Marriage Murder
-                        br
-                        |                     Author : Chetan Bhagat
-                    td
-                        button.edit(type='submit') Edit
-                        button.btn1(type='submit') Delete
-                tr
-                    td
-                        .image
-                            img(src='./img/book/book2.jpg')
-                    td
-                        | Name   : Revolution 2020
-                        br
-                        |                     Author : Chetan Bhagat
-                    td
-                        button.edit(type='submit') Edit
-                        button.btn1(type='submit') Delete
+                if books
+                    each book in books
+                        tr
+                            td
+                                .image
+                                    img(src=`./img/book/${book.photo}`)
+                            td
+                                p=`Name   : ${book.name}`
+                                p=`Authors : ${book.authors.join(', ')}`
+                                p=`Stocks   : ${book.stocks}`
+                                p=`ISBN   : ${book.ISBN}`
+                                p=`Genre   : ${book.genre}`
+                            td
+                                a(href='#popup2' onclick="getDetails(this)" class="edit btn" data-book-id=`${book.id}`) Edit
+                                button.btn1.deleteBtn(data-book-id=`${book.id}`) Delete
+        -const current = currentPage * 1;
+        if current > 1
+            a(href=`/uploadBook?page=${current -1}` class='previous page__btn')
+                svg.icon.page_icon
+                    use(xlink:href='/img/sprite.svg#icon-cheveron-left')
+        if current < pagesCount
+            a(href=`/uploadBook?page=${current+1}` class='next page__btn')
+                svg.icon.page_icon.next_btn
+                    use(xlink:href='/img/sprite.svg#icon-cheveron-right')
+
     #popup.pop
         .pop__content
             a.pop__close(href='#upload-book')  &#x2716;
@@ -89,4 +81,30 @@ block content
                     input#gridCheck.form-check-input(type='checkbox')
                     label.form-check-label(for='gridCheck') New 
                 button#uploadBtn.btn Upload
+    #popup2.pop
+        .pop__content
+            a.pop__close(href='#update-book')  &#x2716;
+            form.form.bookForm
+                .form-group.col-md-6
+                    label(for='inputBookName') Name
+                    input#popup2inputBookName.form-control(type='text' placeholder='')
+                .form-group.col-md-6
+                    label(for='inputAuthor') Authors
+                    input#inputAuthor.form-control(type='text' data-role='tagsinput' placeholder='')
+                .form-row
+                    .form-group.col-md-6
+                        label(for='inputISBN') ISBN
+                        input#popup2inputISBN.form-control(type='text' required='')
+                    .form-group.col-md-4
+                        label(for='inputGenre') Genre
+                        select#popup2inputGenre.form-control
+                            option(selected='') other
+                            option Self-help
+                            option sports
+                            option Contemporary
+                            option Business/ Economics
+                    .form-group.col-md-2
+                        label(for='inputStock') Stocks
+                        input#popup2inputStock.form-control(type='number' required='')
+                button#updateBtn.btn Update
     script(src='./js/tagsinput.js')

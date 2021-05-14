@@ -12,31 +12,37 @@ const approveBtns =  document.getElementsByClassName('approve');
 const rejectBtns = document.getElementsByClassName('reject'); 
 const profile = document.getElementsByClassName('profile')[0]; 
 const bookForm = document.querySelector('.bookForm');
+const updateBtn = document.querySelector('#updateBtn');
+const editBtn = document.querySelectorAll('.edit')
+const deleteBtns = document.getElementsByClassName('deleteBtn')
+let BookUpdateId;
 
 
 
-// alert
+
+
+// alert dialog
 const hideAlert = () => {
   const el = document.querySelector('.alert');
   if (el) el.parentElement.removeChild(el);
 };
 
-// type is 'success' or 'error'
+// type is 'success' , 'error' or info
 const showAlert = (type, msg, time = 7) => {
   hideAlert();
   const markup = `<div class="alert alert--${type}">${msg}</div>`;
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   window.setTimeout(hideAlert, time * 1000);
 };
+
 if(loginForm){
     loginForm.addEventListener('submit',async e => {
         e.preventDefault();
         const btn = document.getElementById('login__btn');
-        btn.textContent = 'logging in....'
-        
         const email = document.getElementById('email');
         const password = document.getElementById('password');
         try {
+            btn.textContent = 'logging in....'
             const result = await axios({
                 method: 'post',
                 url: 'http://127.0.0.1:8000/api/users/login',
@@ -62,6 +68,7 @@ if(loginForm){
         
     })
 }
+// Display user searched book
 if(search){
   document.querySelector('.search__icon').addEventListener('click', e =>{
     e.preventDefault()
@@ -73,11 +80,11 @@ if(signupForm){
   signupForm.addEventListener('submit',async e => {
     e.preventDefault();
     const btn = document.getElementById('signup__btn');
-    btn.textContent = 'Signing in....'
     const email = document.getElementById('signup__email');
     const password = document.getElementById('signup__password');
     const name = document.getElementById('signup__name');
     try {
+        btn.textContent = 'Signing in....'
         const result = await axios({
             method: 'post',
             url: 'http://127.0.0.1:8000/api/users/signup',
@@ -111,7 +118,7 @@ if(no_stocks_btn){
     showAlert('info',`There is no any '${bookName}' book on stock`,3)
   })
 }
-
+// book reservation
 if(reserveBtn){
   reserveBtn.addEventListener('click',async e => {
     const {book} = e.target.dataset
@@ -141,7 +148,7 @@ if(reserveBtn){
     }
   })
 }
-
+// reject user requested book
 if(rejectBtns){
   for (const reject of rejectBtns) {
     reject.addEventListener('click', async function(e){
@@ -169,9 +176,8 @@ if(rejectBtns){
 
     })
   }
-
- 
 }
+// approve user requested book
 if(approveBtns){
   for (const approve of approveBtns) {
     approve.addEventListener('click', async function(e){
@@ -207,6 +213,7 @@ if(approveBtns){
     }
   )}
 }
+// logging out user
 if(profile){
   profile.addEventListener('click',async e =>{
     try {
@@ -225,12 +232,11 @@ if(profile){
 
   })
 }
-
+// Book upload
 if(bookForm){
   bookForm.addEventListener('submit', async e => {
       e.preventDefault();
       const btn = document.getElementById('uploadBtn');
-      btn.textContent="uploading..."
       var formData = new FormData();
       formData.append("name", document.getElementById('inputBookName').value);
       formData.append("ISBN", document.getElementById('inputISBN').value);
@@ -248,6 +254,7 @@ if(bookForm){
       }
       formData.append("authors",authors);
       try {
+          btn.textContent="uploading..."
           const result = await axios.post('http://127.0.0.1:8000/api/books',formData);
           if(result.data.status ==="success"){  
             showAlert('success', 'successfully uploaded!'); 
@@ -263,4 +270,71 @@ if(bookForm){
          
       }
   })
+}
+// Book update
+if(updateBtn){
+  updateBtn.addEventListener('click',async e =>{
+    const name =  document.getElementById('popup2inputBookName').value
+    const ISBN =  document.getElementById('popup2inputISBN').value
+    const stocks =  document.getElementById('popup2inputStock').value
+    const genre =  document.getElementById('popup2inputGenre').value
+    const badges = document.getElementsByClassName('badge')
+    const authors = []
+    for (const badge of badges) {
+        authors.push(badge.textContent)
+    }
+    try {
+        updateBtn.textContent="Updating..."
+        const result = await axios({
+          method: 'patch',
+          url: `http://127.0.0.1:8000/api/books/${BookUpdateId}`,
+          data:{
+            name:name,
+            genre:genre,
+            ISBN:ISBN,
+            authors:authors,
+            stocks:stocks
+          }
+        });
+        if(result.data.status ==="success"){  
+          location.reload(true);
+          showAlert('success', 'successfully Updated!'); 
+         
+        } 
+        updateBtn.textContent = 'Update'           
+    }catch (err) {
+      updateBtn.textContent = 'Update'
+        showAlert('error',`Update failed try later !`);
+       
+    }
+  })
+}
+// Book delete
+if(deleteBtns){
+  for (const deleteBtn of deleteBtns) {
+    deleteBtn.addEventListener('click',async function(e){
+      try {
+        const bookId = this.getAttribute("data-book-id");
+        deleteBtn.textContent="Deleting..."
+        const result = await axios({
+          method: 'delete',
+          url: `http://127.0.0.1:8000/api/books/${bookId}`,
+        });
+        if(result.data.status ==="success"){  
+          location.reload(true);
+          showAlert('success', 'successfully Deleted!'); 
+        } 
+        deleteBtn.textContent = 'Delete'           
+      }catch (err) {
+        deleteBtn.textContent = 'Delete'
+        showAlert('error',`Deletion failed try later !`);
+        
+      }
+    }) 
+  }
+}
+
+function getDetails(book) {
+  let bookId = book.getAttribute("data-book-id");
+  BookUpdateId = bookId;
 }
