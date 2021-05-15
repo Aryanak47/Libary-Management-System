@@ -223,7 +223,6 @@ if(profile){
         });
         if(result.data.status ==="success"){ 
           location.reload(true);
-          showAlert('success', 'Logged out successfully!');  
         }            
   } catch (err) {
       showAlert('error','Try again later');
