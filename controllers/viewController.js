@@ -13,18 +13,16 @@ exports.getOverView = catchAsync( async(req, res) => {
       });
     }
   }
-  const books = await Book.find();
-  const totalBooks = books.length;
   const page = req.query.page || 1;
   const options = {
     page: page,
-    limit: 4,
+    limit: 6,
   };
-
+  
   Book.paginate({}, options).then((result) => {
     res.status(200).render('overview', {
       books: result.docs,
-      pagesCount: Math.round(totalBooks/4),
+      pagesCount: result.totalPages,
       currentPage: page,
       title: 'Books',
     });
@@ -93,8 +91,6 @@ exports.checkLogedIn = (req, res, next) => {
 };
 
 exports.getUpload = catchAsync(async (req, res) => {
-  const books = await Book.find();
-  const totalBooks = books.length;
   const page = req.query.page || 1;
   const options = {
     page: page,
@@ -103,7 +99,7 @@ exports.getUpload = catchAsync(async (req, res) => {
   Book.paginate({}, options).then((result) => {
     res.status(200).render('adminUploadBook', {
       books: result.docs,
-      pagesCount: Math.round(totalBooks/4),
+      pagesCount:result.totalPages,
       currentPage: page,
       title: 'Upload Book',
     });

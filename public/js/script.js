@@ -13,9 +13,9 @@ const rejectBtns = document.getElementsByClassName('reject');
 const profile = document.getElementsByClassName('profile')[0]; 
 const bookForm = document.querySelector('.bookForm');
 const updateBtn = document.querySelector('#updateBtn');
-const editBtn = document.querySelectorAll('.edit')
+const editBtns = document.querySelectorAll('.edit')
 const deleteBtns = document.getElementsByClassName('deleteBtn')
-let BookUpdateId;
+let BookUpdate;
 
 
 
@@ -273,6 +273,7 @@ if(bookForm){
 // Book update
 if(updateBtn){
   updateBtn.addEventListener('click',async e =>{
+    const book = JSON.parse(BookUpdate);
     const name =  document.getElementById('popup2inputBookName').value
     const ISBN =  document.getElementById('popup2inputISBN').value
     const stocks =  document.getElementById('popup2inputStock').value
@@ -286,7 +287,7 @@ if(updateBtn){
         updateBtn.textContent="Updating..."
         const result = await axios({
           method: 'patch',
-          url: `http://127.0.0.1:8000/api/books/${BookUpdateId}`,
+          url: `http://127.0.0.1:8000/api/books/${book.id}`,
           data:{
             name:name,
             genre:genre,
@@ -296,13 +297,12 @@ if(updateBtn){
           }
         });
         if(result.data.status ==="success"){  
-          location.reload(true);
-          showAlert('success', 'successfully Updated!'); 
-         
+          showAlert('success', 'successfully uploaded!'); 
+          window.location.href = "/uploadBook"; 
         } 
         updateBtn.textContent = 'Update'           
     }catch (err) {
-      updateBtn.textContent = 'Update'
+        updateBtn.textContent = 'Update'
         showAlert('error',`Update failed try later !`);
        
     }
@@ -332,8 +332,29 @@ if(deleteBtns){
     }) 
   }
 }
+if(editBtns){
+  for (const editBtn of editBtns) {
+    editBtn.addEventListener('click',async function(e){
+      const book = JSON.parse(BookUpdate);
+      let name =  document.getElementById('popup2inputBookName').value=book.name
+      let ISBN =  document.getElementById('popup2inputISBN').value=book.ISBN
+      let stocks =  document.getElementById('popup2inputStock').value=book.stocks
+      let genre =  document.getElementById('popup2inputGenre').value=book.genre
+      const badges = document.getElementsByClassName('bootstrap-tagsinput')[1]
+      if (badges.firstChild) {
+        badges.removeChild(badges.firstChild);
+      }
+      for (const author of book.authors) {
+        const element = `<span class="badge badge-info">${author}<span data-role="remove"></span></span>`
+        badges.insertAdjacentHTML("afterbegin",element)
+      }
+      
+      
+    }) 
+  }
+}
 
 function getDetails(book) {
-  let bookId = book.getAttribute("data-book-id");
-  BookUpdateId = bookId;
+  let b = book.getAttribute("data-book");
+  BookUpdate = b;
 }

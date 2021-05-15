@@ -47,6 +47,7 @@ a{
     background-position: center;
     position: relative;
 }
+
 .admin__txt{
     font-size: 1.6rem;
     color: #fff;
@@ -54,11 +55,7 @@ a{
     text-transform: uppercase;
    
 }
-@media screen and (max-width: 992px) {
-  .admin__txt {
-    font-size: 1.2rem;
-  }
-}
+
 
 .navigation {
     display: flex;
@@ -161,9 +158,9 @@ a{
   justify-content: space-between;
   align-items: center; */
     position: absolute;
-    top: 20%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 40%);
+    transform: translate(-50%, -50%);
     min-width: 60rem;
 }
 
@@ -253,7 +250,7 @@ a{
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    grid-template-columns: repeat(3, minmax(12rem, 1fr));
     grid-gap: 2.5rem;
 }
 
@@ -941,5 +938,61 @@ tr:nth-child(even) {
 .form-control{
     height:initial;
     padding:4px 10px ;
+}
+
+/* responsive */
+
+
+@media only screen and (max-width: 37.5em) {
+    .header{
+        height: 75vh;
+    }
+    html{
+        font-size: 75%;
+    }
+    .heading__box{
+        top: 30%;
+        left: 30%;
+        transform: translate(-25%, -25%);
+    }
+   
+}
+
+@media only screen and (max-width: 62.5em) {
+    .heading__primary {
+        font-size:2rem
+    }
+    .heading__box{
+        min-width: 43rem;
+
+    }
+   
+}
+@media screen and (max-width: 800px) {
+    .admin__txt {
+      font-size: 1.2rem;
+    }
+    .heading__primary {
+        font-size:2rem
+    }
+    .heading__box{
+        min-width: 37rem;
+
+    }
+    .cards{
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        grid-gap: 3.5rem;
+    }
+}
+@media screen and (max-width: 500px) {
+    
+    .heading__primary {
+        font-size:1.3rem
+    }
+    .heading__box{
+        min-width: 26rem;
+
+    }
+    
 }
 

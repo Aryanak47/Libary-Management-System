@@ -33,7 +33,7 @@ block content
                                 p=`ISBN   : ${book.ISBN}`
                                 p=`Genre   : ${book.genre}`
                             td
-                                a(href='#popup2' onclick="getDetails(this)" class="edit btn" data-book-id=`${book.id}`) Edit
+                                a(href='#popup2' onclick="getDetails(this)" class="edit btn" data-book=`${JSON.stringify(book)}`) Edit
                                 button.btn1.deleteBtn(data-book-id=`${book.id}`) Delete
         -const current = currentPage * 1;
         if current > 1
