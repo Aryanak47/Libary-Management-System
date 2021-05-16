@@ -103,8 +103,11 @@ if(signupForm){
     } catch (err) {
         btn.textContent = 'signup'
         if(err.response.data.error.statusCode === 500){
-          showAlert('error','Try again later');
-          return
+          if(err.response.data.message.includes("E11000 duplicate")){
+            return showAlert('error','User already signed up with this email');
+          }else if(err.response.data.message.includes("validation failed"))
+            return showAlert('error','Invalid email');
+         
         }
         showAlert('error', err.response.data.message); 
       }
