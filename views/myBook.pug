@@ -32,5 +32,6 @@ block content
                         p=`Author/s : ${reserve.book.authors.join(', ')}`
                             br
                         p=`Genre : ${reserve.book.genre}`
+                        p=`Total Fine : ${reserve.totalFine}`
                         -const date =new Date(new Date(reserve.expireDate).getTime())
                         p.card1__expire=`expires : ${date.toLocaleDateString()}`
