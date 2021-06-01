@@ -45,6 +45,100 @@ block content
           a(href=`/?page=${current+1}` class='next page__btn')
             svg.icon.page_icon.next_btn
               use(xlink:href='/img/sprite.svg#icon-cheveron-right')
+  section.genre__section.mg-all_md
+    h3.heading__third.mg-btn Browse by subject
+    .genre
+      .genre__content
+        img.genre__content-image(src='/img/emojione_artist-palette.png' alt='genre image')
+        span.genre__content-text Art
+      .genre__content
+        img.genre__content-image(src='/img/ic_round-science.png' alt='genre image')
+        span.genre__content-text Science
+      .genre__content
+        img.genre__content-image(src='/img/noto_horse-face.png' alt='genre image')
+        span.genre__content-text Fantasy
+      .genre__content
+        img.genre__content-image(src='/img/emojione_rose.png' alt='genre image')
+        span.genre__content-text Romance
+      .genre__content
+        img.genre__content-image(src='/img/Vector.png' alt='genre image')
+        span.genre__content-text Programming
+  section.feature__section
+    h3.heading__third.mg-all_md Books of the year
+    .feature
+      .feature__images
+        .feature__image.img-1
+          img(src='/img/book/book1.jpg' alt='book image')
+        .feature__image.img-2
+          img(src='/img/book/book5.jpg' alt='book image')
+        .feature__image.img-3
+          img(src='/img/book/book4.jpg' alt='book image')
+      .features__ctrl
+        h3.heading__third.features__ctrl-text Explore &amp; read millions of books online for free
+        a.btn.features__ctrl-btn(href='#')  See all books
+  section.info__section
+    h3.heading__third.mg-all_md Designed and Created for
+    .designFor
+      figure.photo__shape
+        img(src='/img/Rectangle 53.png' alt='Photo of student')
+      .info__container
+        p.info__container-heading Students
+        p
+          | We provide free and easy access to age-appropriate books that help
+          | improve children&rsquo;s reading skills and develop a reading culture in schools.
+          | Our interactive digital learning modules, educational videos and reference materials
+          | help students do research projects and promote the habit of independent inquiry
+          | .
+    .designFor
+      .info__container
+        p.info__container-heading Teachers  
+        p
+          | We provide free and easy access to age-appropriate books that help
+          | improve children&rsquo;s reading skills and develop a reading culture in schools.
+          | Our interactive digital learning modules, educational videos and reference materials
+          | help students do research projects and promote the habit of independent inquiry.
+          | .
+      figure.photo__shape
+        img(src='/img/Rectangle 54.png' alt='Photo of student')
+    .designFor
+      figure.photo__shape
+        img(src='/img/Rectangle 55.png' alt='Photo of student')
+      .info__container
+        p.info__container-heading Community
+        p
+          | We provide free and easy access to age-appropriate books that help improve children&rsquo;s
+          | reading skills and develop a reading culture in schools. Our interactive digital learning
+          | modules, educational videos and reference materials help students do research projects and promote the habit of independent inquiry.
+          | .
+  section.contact__section
+    .contact__libarian
+      p.contact__header Contact the Enquiry Service:
+      .contact__items
+        .contact__item
+          img.contact__img(src='/img/Group-1.png' alt='message')
+          p.contact__text Help
+        .contact__item
+          img.contact__img(src='/img/fluent_contact-card-16-regular.png' alt='contact icon')
+          p.contact__text Contact us
+        .contact__item
+          img.contact__img(src='/img/Group.png' alt='live chat')
+          p.contact__text Live chat
+        .contact__item
+          img.contact__img(src='/img/fluent_call-20-regular.png' alt='contact icon')
+          p.contact__text +977 **********
+    .contact__socialMedia
+      p.contact__header Follow us on::
+      .contact__items
+        .contact__item
+          a(href='#')
+            img.contact__img(src='/img/foundation_social-facebook.png' alt='contact icon')
+        .contact__item
+          a(href='#')
+            img.contact__img(src='/img/foundation_social-twitter.png' alt='contact icon')
+        .contact__item
+          a(href='#')
+            img.contact__img(src='/img/foundation_social-blogger.png' alt='contact icon')
+
   script.
       $(".heading__btn").click(function() {
       $('html, body').animate({

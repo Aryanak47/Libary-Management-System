@@ -300,7 +300,7 @@ if(updateBtn){
           }
         });
         if(result.data.status ==="success"){  
-          showAlert('success', 'successfully uploaded!'); 
+          showAlert('success', 'successfully updated!'); 
           window.location.href = "/uploadBook"; 
         } 
         updateBtn.textContent = 'Update'           

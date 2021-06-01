@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">  
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="./css/style.css" />
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha256-OFRAJNoaD8L3Br5lglV7VyLRf0itmoBzWUoM+Sji4/8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-angular.min.js" integrity="sha512-KT0oYlhnDf0XQfjuCS/QIw4sjTHdkefv8rOJY5HHdNEZ6AmOh1DW/ZdSqpipe+2AEXym5D0khNu95Mtmw9VNKg==" crossorigin="anonymous"></script>
+        <title>Library Management System</title>
+        <style type="text/css">
+           
+            .badge-info{
+                background-color: #eb2f64;
+                padding: .5rem;
+                font-size: 1rem;
+                margin-right: 5px;
+                margin-top: 3px;
+            }   
+
+            .bootstrap-tagsinput input{
+                font-size: 1rem;
+            }
+         
+            .label {
+                display: inline-block;
+                padding: .25em .4em;
+                font-size: 75%;
+                font-weight: 700;
+                line-height: 1;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: baseline;
+                border-radius: .25rem;
+                transition: color .15s ease-in-out,background-color .15s ease-in-out,
+                border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            }
+            .form-control{
+                height:initial;
+                padding:4px 10px ;
+            }
+        </style>
+    </head>
+<body>
+    <!-- <img src="./img/working.png" alt="" srcset=""> -->
+    <div class="pop" id="popup">
+        <form class="form bookForm">
+            <div class="form-group col-md-6">
+                <label for="inputBookName">Name</label>
+                <input type="text" class="form-control" id="inputBookName" placeholder="">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAuthor">Authors</label>
+                <input type="text" data-role="tagsinput" class="form-control" id="inputAuthor" placeholder="">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                <label for="inputISBN">ISBN</label>
+                <input type="text" class="form-control" id="inputISBN" required>
+                </div>
+                <div class="form-group col-md-4">
+                <label for="inputGenre">Genre</label>
+                <select id="inputGenre" class="form-control">
+                    <option selected>other</option>
+                    <option>motivation</option>
+                    <option>sports</option>
+                
+                </select>
+                </div>
+                <div class="form-group col-md-2">
+                <label for="inputStock">Stocks</label>
+                <input type="number" class="form-control" id="inputStock" required>
+                </div>
+            </div>
+                <div class="custom-file  col-md-6  mg-btn">
+                    <input type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" required>
+                    <label class="custom-file-label" style="font-size:1rem" for="validatedCustomFile">Choose photo...</label>
+                    <div class="invalid-feedback"> invalid  file </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="Summary">Summary</label>
+                    <textarea class="form-control" id="Summary" rows="3"></textarea>
+                </div>
+                <div class="form-check col-md-6">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">New </label>
+                </div>
+                <button id="uploadBtn" class="btn">Upload</button>
+        </form>
+    </div>
+
+    
+</body>
+<script src="./js/tagsinput.js"></script>
+<script src="./js/test.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</html>
