@@ -51,7 +51,7 @@ app.all('*', (req, res, next) => {
 
 // error handler middlewear
 app.use(errorController);
-
-app.listen(8000, () => {
-  console.log('listening to port 8000');
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+  console.log(`listening to port ${port}`);
 });
